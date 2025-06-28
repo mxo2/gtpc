@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import CookieBanner from "@/components/cookie-banner";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import Delegation from "@/pages/delegation";
@@ -14,6 +15,9 @@ import Contact from "@/pages/contact";
 import Consultancy from "@/pages/consultancy";
 import Gallery from "@/pages/gallery";
 import NotFound from "@/pages/not-found";
+import PrivacyPolicy from "@/pages/privacy-policy";
+import TermsConditions from "@/pages/terms-conditions";
+import CookiesPolicy from "@/pages/cookies-policy";
 
 function Router() {
   return (
@@ -29,6 +33,9 @@ function Router() {
           <Route path="/membership" component={Membership} />
           <Route path="/contact" component={Contact} />
           <Route path="/gallery" component={Gallery} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/terms-conditions" component={TermsConditions} />
+          <Route path="/cookies-policy" component={CookiesPolicy} />
           <Route component={NotFound} />
         </Switch>
       </main>
@@ -43,6 +50,7 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <Router />
+        <CookieBanner />
       </TooltipProvider>
     </QueryClientProvider>
   );
