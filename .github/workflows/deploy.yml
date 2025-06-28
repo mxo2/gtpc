@@ -1,0 +1,39 @@
+name: Deploy GTPC Website
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build application
+      run: |
+        npm run build:client
+        npm run build:server
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        PGHOST: ${{ secrets.PGHOST }}
+        PGPORT: ${{ secrets.PGPORT }}
+        PGUSER: ${{ secrets.PGUSER }}
+        PGPASSWORD: ${{ secrets.PGPASSWORD }}
+        PGDATABASE: ${{ secrets.PGDATABASE }}
+    
+    - name: Deploy to Production
+      run: echo "Build completed successfully"
+      # Add your deployment steps here (e.g., to Vercel, Railway, etc.)
