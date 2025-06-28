@@ -60,15 +60,16 @@ export default function Contact() {
       icon: MapPin,
       title: "Head Office",
       details: [
-        "123 Trade Plaza, International Business District",
-        "Mumbai, Maharashtra 400001, India"
+        "14 & 29, KEDIA BUSINESS CENTRE",
+        "KEDIA THE KOTHI, SIRSI-HATHOJ ROAD",
+        "JAIPUR-302012 RJ, India"
       ]
     },
     {
       icon: Phone,
       title: "Phone",
       details: [
-        "+91 22 1234 5678",
+        "+91 141 1234 5678",
         "+91 98765 43210"
       ]
     },

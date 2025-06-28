@@ -103,6 +103,7 @@ GTPC is a full-stack web application designed to connect global markets through 
 
 ## Changelog
 - June 28, 2025. Initial setup
+- June 28, 2025. Updated contact address to Jaipur, added GTPC logo, implemented premium training booking (₹5,999 for 3-hour sessions), added consultancy booking system (₹2,500 for 1-hour sessions), created photo gallery with admin upload capabilities
 
 ## User Preferences
 

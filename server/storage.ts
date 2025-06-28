@@ -1,4 +1,9 @@
-import { users, inquiries, memberships, type User, type InsertUser, type Inquiry, type InsertInquiry, type Membership, type InsertMembership } from "@shared/schema";
+import { 
+  users, inquiries, memberships, trainingBookings, consultancyBookings, photos,
+  type User, type InsertUser, type Inquiry, type InsertInquiry, 
+  type Membership, type InsertMembership, type TrainingBooking, type InsertTrainingBooking,
+  type ConsultancyBooking, type InsertConsultancyBooking, type Photo, type InsertPhoto
+} from "@shared/schema";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -10,23 +15,45 @@ export interface IStorage {
   
   createMembership(membership: InsertMembership): Promise<Membership>;
   getMemberships(): Promise<Membership[]>;
+  
+  createTrainingBooking(booking: InsertTrainingBooking): Promise<TrainingBooking>;
+  getTrainingBookings(): Promise<TrainingBooking[]>;
+  
+  createConsultancyBooking(booking: InsertConsultancyBooking): Promise<ConsultancyBooking>;
+  getConsultancyBookings(): Promise<ConsultancyBooking[]>;
+  
+  createPhoto(photo: InsertPhoto): Promise<Photo>;
+  getPhotos(): Promise<Photo[]>;
+  getActivePhotos(): Promise<Photo[]>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private inquiries: Map<number, Inquiry>;
   private memberships: Map<number, Membership>;
+  private trainingBookings: Map<number, TrainingBooking>;
+  private consultancyBookings: Map<number, ConsultancyBooking>;
+  private photos: Map<number, Photo>;
   private currentUserId: number;
   private currentInquiryId: number;
   private currentMembershipId: number;
+  private currentTrainingBookingId: number;
+  private currentConsultancyBookingId: number;
+  private currentPhotoId: number;
 
   constructor() {
     this.users = new Map();
     this.inquiries = new Map();
     this.memberships = new Map();
+    this.trainingBookings = new Map();
+    this.consultancyBookings = new Map();
+    this.photos = new Map();
     this.currentUserId = 1;
     this.currentInquiryId = 1;
     this.currentMembershipId = 1;
+    this.currentTrainingBookingId = 1;
+    this.currentConsultancyBookingId = 1;
+    this.currentPhotoId = 1;
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -68,6 +95,8 @@ export class MemStorage implements IStorage {
     const membership: Membership = { 
       ...insertMembership, 
       id, 
+      company: insertMembership.company || null,
+      phone: insertMembership.phone || null,
       createdAt: new Date() 
     };
     this.memberships.set(id, membership);
@@ -78,6 +107,74 @@ export class MemStorage implements IStorage {
     return Array.from(this.memberships.values()).sort(
       (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
     );
+  }
+
+  async createTrainingBooking(insertTrainingBooking: InsertTrainingBooking): Promise<TrainingBooking> {
+    const id = this.currentTrainingBookingId++;
+    const booking: TrainingBooking = { 
+      ...insertTrainingBooking, 
+      id, 
+      company: insertTrainingBooking.company || null,
+      message: insertTrainingBooking.message || null,
+      amount: 5999,
+      status: "pending",
+      createdAt: new Date() 
+    };
+    this.trainingBookings.set(id, booking);
+    return booking;
+  }
+
+  async getTrainingBookings(): Promise<TrainingBooking[]> {
+    return Array.from(this.trainingBookings.values()).sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    );
+  }
+
+  async createConsultancyBooking(insertConsultancyBooking: InsertConsultancyBooking): Promise<ConsultancyBooking> {
+    const id = this.currentConsultancyBookingId++;
+    const booking: ConsultancyBooking = { 
+      ...insertConsultancyBooking, 
+      id, 
+      company: insertConsultancyBooking.company || null,
+      message: insertConsultancyBooking.message || null,
+      amount: 2500,
+      status: "pending",
+      createdAt: new Date() 
+    };
+    this.consultancyBookings.set(id, booking);
+    return booking;
+  }
+
+  async getConsultancyBookings(): Promise<ConsultancyBooking[]> {
+    return Array.from(this.consultancyBookings.values()).sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    );
+  }
+
+  async createPhoto(insertPhoto: InsertPhoto): Promise<Photo> {
+    const id = this.currentPhotoId++;
+    const photo: Photo = { 
+      ...insertPhoto, 
+      id, 
+      description: insertPhoto.description || null,
+      uploadedBy: insertPhoto.uploadedBy || null,
+      isActive: insertPhoto.isActive || 1,
+      createdAt: new Date() 
+    };
+    this.photos.set(id, photo);
+    return photo;
+  }
+
+  async getPhotos(): Promise<Photo[]> {
+    return Array.from(this.photos.values()).sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    );
+  }
+
+  async getActivePhotos(): Promise<Photo[]> {
+    return Array.from(this.photos.values())
+      .filter(photo => photo.isActive === 1)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }
 }
 

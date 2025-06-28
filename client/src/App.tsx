@@ -11,6 +11,8 @@ import Delegation from "@/pages/delegation";
 import Training from "@/pages/training";
 import Membership from "@/pages/membership";
 import Contact from "@/pages/contact";
+import Consultancy from "@/pages/consultancy";
+import Gallery from "@/pages/gallery";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -23,8 +25,10 @@ function Router() {
           <Route path="/services" component={Services} />
           <Route path="/delegation" component={Delegation} />
           <Route path="/training" component={Training} />
+          <Route path="/consultancy" component={Consultancy} />
           <Route path="/membership" component={Membership} />
           <Route path="/contact" component={Contact} />
+          <Route path="/gallery" component={Gallery} />
           <Route component={NotFound} />
         </Switch>
       </main>

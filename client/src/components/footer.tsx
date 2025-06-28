@@ -8,9 +8,11 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-                <Globe className="text-white w-6 h-6" />
-              </div>
+              <img 
+                src="/attached_assets/Screenshot 2025-02-12 at 1.42.14 PM_1751085119897.png" 
+                alt="GTPC Logo" 
+                className="h-12 w-auto"
+              />
               <div>
                 <h1 className="text-xl font-bold">GTPC</h1>
                 <p className="text-sm text-gray-400">Global Trade Promotion Corporation</p>
@@ -52,7 +54,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6">Services</h3>
             <ul className="space-y-3">
               <li><Link href="/services" className="text-gray-300 hover:text-white transition-colors">Business Consultancy</Link></li>
-              <li><Link href="/services" className="text-gray-300 hover:text-white transition-colors">B2B Meetings</Link></li>
+              <li><Link href="/consultancy" className="text-gray-300 hover:text-white transition-colors">Expert Consultation</Link></li>
               <li><Link href="/delegation" className="text-gray-300 hover:text-white transition-colors">Delegation Programs</Link></li>
               <li><Link href="/training" className="text-gray-300 hover:text-white transition-colors">Training & Workshops</Link></li>
               <li><Link href="/membership" className="text-gray-300 hover:text-white transition-colors">Membership</Link></li>

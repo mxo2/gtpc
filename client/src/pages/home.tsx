@@ -27,6 +27,23 @@ export default function Home() {
     }
   ];
 
+  const featuredServices = [
+    {
+      title: "Premium Training Session",
+      description: "3-Hour intensive export-import masterclass",
+      price: "₹5,999",
+      link: "/training",
+      features: ["One-on-one guidance", "Practical tools", "Certificate included"]
+    },
+    {
+      title: "Expert Consultation",
+      description: "1-Hour focused consultation on any trade topic",
+      price: "₹2,500",
+      link: "/consultancy",
+      features: ["Expert advisor", "Actionable advice", "Follow-up support"]
+    }
+  ];
+
   const delegations = [
     {
       country: "Malaysia",
@@ -173,6 +190,45 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Services */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Services</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Get personalized expert guidance with our premium training and consultation services
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {featuredServices.map((service, index) => (
+              <div key={index} className="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{service.title}</h3>
+                  <p className="text-gray-600 mb-4">{service.description}</p>
+                  <div className="text-3xl font-bold text-primary">{service.price}</div>
+                </div>
+                
+                <div className="space-y-3 mb-6">
+                  {service.features.map((feature, featureIndex) => (
+                    <div key={featureIndex} className="flex items-center">
+                      <Check className="w-5 h-5 text-green-600 mr-3" />
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <Link href={service.link}>
+                  <Button className="w-full bg-primary hover:bg-primary/90">
+                    Book Now <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>

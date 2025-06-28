@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertInquirySchema, insertMembershipSchema } from "@shared/schema";
+import { insertInquirySchema, insertMembershipSchema, insertTrainingBookingSchema, insertConsultancyBookingSchema, insertPhotoSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -52,6 +52,91 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(memberships);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch memberships" });
+    }
+  });
+
+  // Training booking
+  app.post("/api/training-booking", async (req, res) => {
+    try {
+      const booking = insertTrainingBookingSchema.parse(req.body);
+      const created = await storage.createTrainingBooking(booking);
+      res.json(created);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: "Invalid data", errors: error.errors });
+      } else {
+        res.status(500).json({ message: "Failed to create training booking" });
+      }
+    }
+  });
+
+  // Get all training bookings (for admin purposes)
+  app.get("/api/training-bookings", async (req, res) => {
+    try {
+      const bookings = await storage.getTrainingBookings();
+      res.json(bookings);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch training bookings" });
+    }
+  });
+
+  // Consultancy booking
+  app.post("/api/consultancy-booking", async (req, res) => {
+    try {
+      const booking = insertConsultancyBookingSchema.parse(req.body);
+      const created = await storage.createConsultancyBooking(booking);
+      res.json(created);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: "Invalid data", errors: error.errors });
+      } else {
+        res.status(500).json({ message: "Failed to create consultancy booking" });
+      }
+    }
+  });
+
+  // Get all consultancy bookings (for admin purposes)
+  app.get("/api/consultancy-bookings", async (req, res) => {
+    try {
+      const bookings = await storage.getConsultancyBookings();
+      res.json(bookings);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch consultancy bookings" });
+    }
+  });
+
+  // Photo upload/create
+  app.post("/api/photos", async (req, res) => {
+    try {
+      const photo = insertPhotoSchema.parse(req.body);
+      const created = await storage.createPhoto(photo);
+      res.json(created);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: "Invalid data", errors: error.errors });
+      } else {
+        res.status(500).json({ message: "Failed to create photo" });
+      }
+    }
+  });
+
+  // Get all photos
+  app.get("/api/photos", async (req, res) => {
+    try {
+      const photos = await storage.getPhotos();
+      res.json(photos);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch photos" });
+    }
+  });
+
+  // Get active photos (for public gallery)
+  app.get("/api/photos/active", async (req, res) => {
+    try {
+      const photos = await storage.getActivePhotos();
+      res.json(photos);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch active photos" });
     }
   });
 

@@ -13,7 +13,9 @@ export default function Navigation() {
     { href: "/services", label: "Services" },
     { href: "/delegation", label: "Delegation" },
     { href: "/training", label: "Training" },
+    { href: "/consultancy", label: "Consultancy" },
     { href: "/membership", label: "Membership" },
+    { href: "/gallery", label: "Gallery" },
     { href: "/contact", label: "Contact" },
   ];
 
@@ -24,9 +26,11 @@ export default function Navigation() {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-              <Globe className="text-white w-6 h-6" />
-            </div>
+            <img 
+              src="/attached_assets/Screenshot 2025-02-12 at 1.42.14 PM_1751085119897.png" 
+              alt="GTPC Logo" 
+              className="h-12 w-auto"
+            />
             <div>
               <h1 className="text-xl font-bold text-gray-900">GTPC</h1>
               <p className="text-xs text-gray-600">Global Trade Promotion Corporation</p>
