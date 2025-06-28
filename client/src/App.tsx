@@ -18,6 +18,7 @@ import NotFound from "@/pages/not-found";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsConditions from "@/pages/terms-conditions";
 import CookiesPolicy from "@/pages/cookies-policy";
+import Admin from "@/pages/admin";
 
 function Router() {
   return (
@@ -36,6 +37,7 @@ function Router() {
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/terms-conditions" component={TermsConditions} />
           <Route path="/cookies-policy" component={CookiesPolicy} />
+          <Route path="/admin" component={Admin} />
           <Route component={NotFound} />
         </Switch>
       </main>

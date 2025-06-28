@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -7,6 +7,39 @@ import { Globe, Menu } from "lucide-react";
 export default function Navigation() {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [logo, setLogo] = useState<string>("/attached_assets/Screenshot 2025-02-12 at 1.42.14 PM_1751085119897.png");
+  const [companyInfo, setCompanyInfo] = useState({
+    name: "Global Trade Promotion Corporation",
+    email: "info@gtpcglobal.com",
+    phone: "",
+    address: "14 & 29, KEDIA BUSINESS CENTRE, JAIPUR-302012 RJ"
+  });
+
+  useEffect(() => {
+    // Load saved logo
+    const savedLogo = localStorage.getItem("gtpc-logo");
+    if (savedLogo) {
+      setLogo(savedLogo);
+    }
+
+    // Load saved company info
+    const savedInfo = localStorage.getItem("gtpc-company-info");
+    if (savedInfo) {
+      setCompanyInfo(JSON.parse(savedInfo));
+    }
+
+    // Listen for storage changes (when admin panel updates)
+    const handleStorageChange = () => {
+      const newLogo = localStorage.getItem("gtpc-logo");
+      if (newLogo) setLogo(newLogo);
+      
+      const newInfo = localStorage.getItem("gtpc-company-info");
+      if (newInfo) setCompanyInfo(JSON.parse(newInfo));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -28,12 +61,12 @@ export default function Navigation() {
           <Link href="/" className="flex items-center space-x-3">
             <div className="flex flex-col items-center">
               <img 
-                src="/attached_assets/Screenshot 2025-02-12 at 1.42.14 PM_1751085119897.png" 
+                src={logo} 
                 alt="GTPC Logo" 
                 className="h-14 w-auto mb-1"
               />
               <div className="text-center">
-                <p className="text-xs font-semibold text-primary leading-tight">Global Trade Promotion Corporation</p>
+                <p className="text-xs font-semibold text-primary leading-tight">{companyInfo.name}</p>
               </div>
             </div>
           </Link>

@@ -1,7 +1,39 @@
 import { Link } from "wouter";
 import { Globe, Linkedin, Twitter, Facebook, Instagram } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function Footer() {
+  const [logo, setLogo] = useState<string>("/attached_assets/Screenshot 2025-02-12 at 1.42.14 PM_1751085119897.png");
+  const [companyInfo, setCompanyInfo] = useState({
+    name: "Global Trade Promotion Corporation",
+    email: "info@gtpcglobal.com",
+    phone: "",
+    address: "14 & 29, KEDIA BUSINESS CENTRE, JAIPUR-302012 RJ"
+  });
+
+  useEffect(() => {
+    const savedLogo = localStorage.getItem("gtpc-logo");
+    if (savedLogo) {
+      setLogo(savedLogo);
+    }
+
+    const savedInfo = localStorage.getItem("gtpc-company-info");
+    if (savedInfo) {
+      setCompanyInfo(JSON.parse(savedInfo));
+    }
+
+    const handleStorageChange = () => {
+      const newLogo = localStorage.getItem("gtpc-logo");
+      if (newLogo) setLogo(newLogo);
+      
+      const newInfo = localStorage.getItem("gtpc-company-info");
+      if (newInfo) setCompanyInfo(JSON.parse(newInfo));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
   return (
     <footer className="bg-primary text-white py-16">
       <div className="container mx-auto px-6">
@@ -9,12 +41,12 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex flex-col items-start mb-6">
               <img 
-                src="/attached_assets/Screenshot 2025-02-12 at 1.42.14 PM_1751085119897.png" 
+                src={logo} 
                 alt="GTPC Logo" 
                 className="h-14 w-auto mb-3"
               />
               <div>
-                <h1 className="text-lg font-bold">Global Trade Promotion Corporation</h1>
+                <h1 className="text-lg font-bold">{companyInfo.name}</h1>
                 <p className="text-sm text-gray-400">Connecting Global Markets</p>
               </div>
             </div>
