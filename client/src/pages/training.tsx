@@ -13,11 +13,12 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { insertTrainingBookingSchema, type InsertTrainingBooking } from "@shared/schema";
 import { Link } from "wouter";
-import { Laptop, Users, Award, Clock, PlayCircle, BookOpen, Calendar, CheckCircle, IndianRupee } from "lucide-react";
+import { Laptop, Users, Award, Clock, PlayCircle, BookOpen, Calendar, CheckCircle, IndianRupee, CreditCard, Copy } from "lucide-react";
 
 export default function Training() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -43,9 +44,10 @@ export default function Training() {
     onSuccess: () => {
       setIsSubmitted(true);
       setIsBookingOpen(false);
+      setShowPayment(true);
       toast({
-        title: "Training Booked!",
-        description: "We'll contact you within 24 hours to confirm your training session.",
+        title: "Booking Confirmed!",
+        description: "Please complete payment using the bank details below.",
       });
       queryClient.invalidateQueries({ queryKey: ["/api/training-bookings"] });
     },
@@ -587,6 +589,111 @@ export default function Training() {
                   </form>
                 </Form>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Payment Information Modal */}
+        {showPayment && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Training Booked!</h3>
+                <p className="text-gray-600">Please complete your payment to secure your training slot.</p>
+              </div>
+
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-6">
+                <div className="flex items-center mb-4">
+                  <CreditCard className="w-6 h-6 text-blue-600 mr-3" />
+                  <h4 className="text-lg font-semibold text-gray-900">Bank Transfer Details</h4>
+                </div>
+                
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center py-2 border-b border-blue-200">
+                    <span className="text-gray-600">Account Name:</span>
+                    <div className="flex items-center">
+                      <span className="font-semibold text-gray-900 text-sm">Global Trade Promotion Corporation</span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          navigator.clipboard.writeText("Global Trade Promotion Corporation");
+                          toast({ title: "Copied!", description: "Account name copied to clipboard" });
+                        }}
+                        className="ml-2 p-1 h-auto"
+                      >
+                        <Copy className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between items-center py-2 border-b border-blue-200">
+                    <span className="text-gray-600">Account Number:</span>
+                    <div className="flex items-center">
+                      <span className="font-semibold text-gray-900">678605600736</span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          navigator.clipboard.writeText("678605600736");
+                          toast({ title: "Copied!", description: "Account number copied to clipboard" });
+                        }}
+                        className="ml-2 p-1 h-auto"
+                      >
+                        <Copy className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between items-center py-2 border-b border-blue-200">
+                    <span className="text-gray-600">IFSC Code:</span>
+                    <div className="flex items-center">
+                      <span className="font-semibold text-gray-900">ICICI0006786</span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          navigator.clipboard.writeText("ICICI0006786");
+                          toast({ title: "Copied!", description: "IFSC code copied to clipboard" });
+                        }}
+                        className="ml-2 p-1 h-auto"
+                      >
+                        <Copy className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between items-center py-2 border-b border-blue-200">
+                    <span className="text-gray-600">Branch:</span>
+                    <span className="font-semibold text-gray-900">Tilak Marg Branch</span>
+                  </div>
+                  
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-gray-600">Amount:</span>
+                    <span className="font-bold text-lg text-green-600">₹5,999</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
+                <h5 className="font-semibold text-gray-900 mb-2">Important Notes:</h5>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  <li>• Please include your name and "Training" in the transfer reference</li>
+                  <li>• Share payment screenshot/details via WhatsApp or email</li>
+                  <li>• We'll confirm your slot within 24 hours of payment</li>
+                  <li>• Online payment integration coming soon</li>
+                </ul>
+              </div>
+
+              <Button 
+                onClick={() => setShowPayment(false)}
+                className="w-full bg-primary text-white hover:bg-primary/90"
+              >
+                Got it, I'll make the payment
+              </Button>
             </div>
           </div>
         )}
