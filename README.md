@@ -2,6 +2,27 @@
 
 A professional corporate website for GTPC showcasing export-import services, delegation programs, and membership offerings.
 
+## 🚀 Automatic Updates Setup
+
+Your website can automatically update whenever you make changes! Follow these simple steps:
+
+### Step 1: Create GitHub Account & Repository
+1. Go to [GitHub.com](https://github.com) and create account
+2. Create new repository named `gtpc-website`
+3. Upload your code files there
+
+### Step 2: Connect to Website Hosting
+1. Go to [Vercel.com](https://vercel.com) (free hosting)
+2. Sign up with your GitHub account  
+3. Import your `gtpc-website` repository
+4. Add your database connection details
+5. Deploy
+
+### Step 3: Enjoy Automatic Updates!
+✅ **Make changes in Replit** → ✅ **GitHub updates automatically** → ✅ **Website updates automatically**
+
+**No manual work needed after setup!** See `DEPLOYMENT_AUTOMATION.md` for detailed guide.
+
 ## Features
 
 - **Export-Import Services**: Comprehensive trade solutions
