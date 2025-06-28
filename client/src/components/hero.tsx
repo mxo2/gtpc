@@ -4,7 +4,7 @@ import { ArrowRight, Ship, Globe, TrendingUp, Users, Award, MapPin } from "lucid
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-32 h-32 bg-accent/10 rounded-full blur-xl"></div>
@@ -23,32 +23,32 @@ export default function Hero() {
               </div>
               
               <h1 className="text-6xl lg:text-7xl font-bold leading-tight">
-                Your Gateway to 
-                <span className="text-accent block">International Trade</span>
+                Expand Your Global Trade 
+                <span className="text-accent block">Opportunities</span>
               </h1>
               
               <p className="text-xl text-gray-200 leading-relaxed max-w-lg">
-                Connect global markets through expert shipping solutions, strategic consultancy, 
-                and comprehensive trade services across 50+ countries.
+                Connect with international markets through our comprehensive export-import consultancy, 
+                B2B meetings, delegation programs, and expert training workshops.
               </p>
             </div>
 
             {/* Key Services */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 my-8">
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center border border-white/20">
-                <Ship className="w-8 h-8 text-accent mx-auto mb-2" />
-                <h3 className="font-semibold">Global Shipping</h3>
-                <p className="text-sm text-gray-300">Worldwide logistics</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center border border-white/20">
                 <TrendingUp className="w-8 h-8 text-accent mx-auto mb-2" />
-                <h3 className="font-semibold">Trade Consultancy</h3>
+                <h3 className="font-semibold">Export-Import Consultancy</h3>
                 <p className="text-sm text-gray-300">Expert guidance</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center border border-white/20">
                 <Users className="w-8 h-8 text-accent mx-auto mb-2" />
-                <h3 className="font-semibold">B2B Connections</h3>
-                <p className="text-sm text-gray-300">Global networking</p>
+                <h3 className="font-semibold">Training & Workshops</h3>
+                <p className="text-sm text-gray-300">Skill development</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center border border-white/20">
+                <Globe className="w-8 h-8 text-accent mx-auto mb-2" />
+                <h3 className="font-semibold">Business Delegations</h3>
+                <p className="text-sm text-gray-300">Global connections</p>
               </div>
             </div>
 
@@ -87,11 +87,11 @@ export default function Hero() {
             <div className="absolute -top-6 -right-6 bg-white rounded-2xl p-6 shadow-2xl text-primary max-w-xs z-20">
               <div className="flex items-center space-x-4">
                 <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center">
-                  <Ship className="text-green-600 w-7 h-7" />
+                  <Users className="text-green-600 w-7 h-7" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-primary">5000+</p>
-                  <p className="text-sm text-gray-600">Successful Shipments</p>
+                  <p className="text-2xl font-bold text-primary">500+</p>
+                  <p className="text-sm text-gray-600">Successful Consultations</p>
                 </div>
               </div>
             </div>
@@ -103,7 +103,7 @@ export default function Hero() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-primary">50+</p>
-                  <p className="text-sm text-gray-600">Countries Served</p>
+                  <p className="text-sm text-gray-600">Countries Connected</p>
                 </div>
               </div>
             </div>

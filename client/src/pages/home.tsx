@@ -84,68 +84,23 @@ export default function Home() {
     <div>
       <Hero />
       
-      {/* International Trade Services Banner */}
+      {/* Expert Services Banner */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-primary mb-4">
-              Complete International Trade Solutions
+              Expert Export-Import Consultancy Services
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From shipping logistics to expert consultancy, we provide end-to-end services 
-              for your global trade success across maritime, air, and land transportation.
+              Professional guidance and training for international trade success. 
+              We help you navigate export-import regulations, connect with global markets, and grow your business.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {/* Shipping & Logistics */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-blue-500">
-              <Ship className="w-12 h-12 text-blue-500 mb-4" />
-              <h3 className="text-xl font-bold text-primary mb-3">Maritime Shipping</h3>
-              <p className="text-gray-600 mb-4">
-                Ocean freight services with full container loads (FCL) and less container loads (LCL) 
-                to major ports worldwide. Competitive rates and reliable transit times.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Container booking & tracking</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Port-to-port delivery</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Cargo insurance coverage</li>
-              </ul>
-            </div>
-
-            {/* Air Freight */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-green-500">
-              <Plane className="w-12 h-12 text-green-500 mb-4" />
-              <h3 className="text-xl font-bold text-primary mb-3">Air Freight</h3>
-              <p className="text-gray-600 mb-4">
-                Fast and secure air cargo services for time-sensitive shipments. 
-                Express delivery options with real-time tracking and customs clearance.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Express & standard delivery</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Temperature-controlled cargo</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Dangerous goods handling</li>
-              </ul>
-            </div>
-
-            {/* Land Transportation */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-orange-500">
-              <Truck className="w-12 h-12 text-orange-500 mb-4" />
-              <h3 className="text-xl font-bold text-primary mb-3">Land Transportation</h3>
-              <p className="text-gray-600 mb-4">
-                Cross-border trucking services and rail freight solutions. 
-                Seamless connectivity across neighboring countries and trade corridors.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Cross-border trucking</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Rail freight services</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Multi-modal connectivity</li>
-              </ul>
-            </div>
-
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {/* Trade Consultancy */}
             <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-purple-500">
-              <Building className="w-12 h-12 text-purple-500 mb-4" />
+              <TrendingUp className="w-12 h-12 text-purple-500 mb-4" />
               <h3 className="text-xl font-bold text-primary mb-3">Trade Consultancy</h3>
               <p className="text-gray-600 mb-4">
                 Expert guidance on export-import procedures, market entry strategies, 
@@ -158,18 +113,33 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* Documentation Services */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-red-500">
-              <FileText className="w-12 h-12 text-red-500 mb-4" />
-              <h3 className="text-xl font-bold text-primary mb-3">Documentation</h3>
+            {/* Training & Workshops */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-green-500">
+              <GraduationCap className="w-12 h-12 text-green-500 mb-4" />
+              <h3 className="text-xl font-bold text-primary mb-3">Training & Workshops</h3>
               <p className="text-gray-600 mb-4">
-                Complete documentation support for international trade including 
-                customs clearance, certificates, and regulatory compliance paperwork.
+                Comprehensive training programs on export-import fundamentals. 
+                3-hour intensive sessions at ₹5,999 covering all aspects of international trade.
               </p>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Export-import licenses</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Certificate of origin</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Customs clearance</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Export-import basics</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Documentation training</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Market analysis techniques</li>
+              </ul>
+            </div>
+
+            {/* Business Delegations */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-blue-500">
+              <Users className="w-12 h-12 text-blue-500 mb-4" />
+              <h3 className="text-xl font-bold text-primary mb-3">Business Delegations</h3>
+              <p className="text-gray-600 mb-4">
+                Organized business delegations to Malaysia, Russia, USA, Japan, and UAE. 
+                Connect with potential partners and explore new markets firsthand.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />5 target countries</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />B2B meeting facilitation</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Market visit programs</li>
               </ul>
             </div>
 
@@ -178,13 +148,13 @@ export default function Home() {
               <Globe2 className="w-12 h-12 text-indigo-500 mb-4" />
               <h3 className="text-xl font-bold text-primary mb-3">Global Network</h3>
               <p className="text-gray-600 mb-4">
-                Extensive network of partners and agents across 50+ countries. 
-                Delegation programs to Malaysia, Russia, USA, Japan, and UAE.
+                Access to our extensive network of verified international partners and agents. 
+                Membership at ₹2,999/year for ongoing support and connections.
               </p>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />50+ country presence</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Business delegations</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />B2B meeting facilitation</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />500+ global partners</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />50+ countries coverage</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-green-500 mr-2" />Ongoing business support</li>
               </ul>
             </div>
           </div>
@@ -193,7 +163,7 @@ export default function Home() {
           <div className="bg-primary rounded-2xl p-12 text-center text-white">
             <h3 className="text-3xl font-bold mb-4">Ready to Expand Your Trade Globally?</h3>
             <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-              Join thousands of successful exporters and importers who trust GTPC for their international trade needs.
+              Join hundreds of successful exporters and importers who trust GTPC for expert guidance and training.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/consultancy">
@@ -202,9 +172,9 @@ export default function Home() {
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Link href="/services">
+              <Link href="/training">
                 <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary font-semibold px-8">
-                  View All Services
+                  Book Training Session
                 </Button>
               </Link>
             </div>
