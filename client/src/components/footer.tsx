@@ -3,19 +3,19 @@ import { Globe, Linkedin, Twitter, Facebook, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-16">
+    <footer className="bg-primary text-white py-16">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-3 mb-6">
+            <div className="flex flex-col items-start mb-6">
               <img 
                 src="/attached_assets/Screenshot 2025-02-12 at 1.42.14 PM_1751085119897.png" 
                 alt="GTPC Logo" 
-                className="h-12 w-auto"
+                className="h-14 w-auto mb-3"
               />
               <div>
-                <h1 className="text-xl font-bold">GTPC</h1>
-                <p className="text-sm text-gray-400">Global Trade Promotion Corporation</p>
+                <h1 className="text-lg font-bold">Global Trade Promotion Corporation</h1>
+                <p className="text-sm text-gray-400">Connecting Global Markets</p>
               </div>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">

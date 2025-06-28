@@ -11,7 +11,7 @@ export default function Hero() {
             <h1 className="text-5xl font-bold mb-6 leading-tight">
               Expand Your Global Trade <span className="text-accent">Opportunities</span>
             </h1>
-            <p className="text-xl mb-8 text-blue-100">
+            <p className="text-xl mb-8 text-gray-200">
               Connect with international markets through our comprehensive export-import services, 
               B2B meetings, delegation programs, and expert consultancy worldwide.
             </p>

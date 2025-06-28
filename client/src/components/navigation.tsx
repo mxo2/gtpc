@@ -22,18 +22,19 @@ export default function Navigation() {
   const isActive = (href: string) => location === href;
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
-      <nav className="container mx-auto px-6 py-4">
+    <header className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200">
+      <nav className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3">
-            <img 
-              src="/attached_assets/Screenshot 2025-02-12 at 1.42.14 PM_1751085119897.png" 
-              alt="GTPC Logo" 
-              className="h-12 w-auto"
-            />
-            <div>
-              <h1 className="text-xl font-bold text-gray-900">GTPC</h1>
-              <p className="text-xs text-gray-600">Global Trade Promotion Corporation</p>
+            <div className="flex flex-col items-center">
+              <img 
+                src="/attached_assets/Screenshot 2025-02-12 at 1.42.14 PM_1751085119897.png" 
+                alt="GTPC Logo" 
+                className="h-14 w-auto mb-1"
+              />
+              <div className="text-center">
+                <p className="text-xs font-semibold text-primary leading-tight">Global Trade Promotion Corporation</p>
+              </div>
             </div>
           </Link>
           
@@ -42,10 +43,10 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`transition-colors ${
+                className={`transition-colors font-medium ${
                   isActive(link.href)
-                    ? "text-primary font-medium"
-                    : "text-gray-700 hover:text-primary"
+                    ? "text-primary border-b-2 border-accent pb-1"
+                    : "text-gray-700 hover:text-primary hover:border-b-2 hover:border-accent hover:pb-1"
                 }`}
               >
                 {link.label}

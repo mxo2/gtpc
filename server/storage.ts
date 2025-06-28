@@ -178,4 +178,74 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+// Database storage implementation
+import { eq } from "drizzle-orm";
+import { db } from "./db";
+
+export class DatabaseStorage implements IStorage {
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db.insert(users).values(insertUser).returning();
+    return user;
+  }
+
+  async createInquiry(insertInquiry: InsertInquiry): Promise<Inquiry> {
+    const [inquiry] = await db.insert(inquiries).values(insertInquiry).returning();
+    return inquiry;
+  }
+
+  async getInquiries(): Promise<Inquiry[]> {
+    return await db.select().from(inquiries);
+  }
+
+  async createMembership(insertMembership: InsertMembership): Promise<Membership> {
+    const [membership] = await db.insert(memberships).values(insertMembership).returning();
+    return membership;
+  }
+
+  async getMemberships(): Promise<Membership[]> {
+    return await db.select().from(memberships);
+  }
+
+  async createTrainingBooking(insertTrainingBooking: InsertTrainingBooking): Promise<TrainingBooking> {
+    const [booking] = await db.insert(trainingBookings).values(insertTrainingBooking).returning();
+    return booking;
+  }
+
+  async getTrainingBookings(): Promise<TrainingBooking[]> {
+    return await db.select().from(trainingBookings);
+  }
+
+  async createConsultancyBooking(insertConsultancyBooking: InsertConsultancyBooking): Promise<ConsultancyBooking> {
+    const [booking] = await db.insert(consultancyBookings).values(insertConsultancyBooking).returning();
+    return booking;
+  }
+
+  async getConsultancyBookings(): Promise<ConsultancyBooking[]> {
+    return await db.select().from(consultancyBookings);
+  }
+
+  async createPhoto(insertPhoto: InsertPhoto): Promise<Photo> {
+    const [photo] = await db.insert(photos).values(insertPhoto).returning();
+    return photo;
+  }
+
+  async getPhotos(): Promise<Photo[]> {
+    return await db.select().from(photos);
+  }
+
+  async getActivePhotos(): Promise<Photo[]> {
+    return await db.select().from(photos);
+  }
+}
+
+export const storage = new DatabaseStorage();
