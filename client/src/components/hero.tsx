@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Ship, Globe, TrendingUp, Users, Award, MapPin } from "lucide-react";
+import bannerImage from "@assets/ChatGPT Image Jul 1, 2025, 04_26_01 PM_1751367401568.png";
 
 export default function Hero() {
   return (
@@ -76,9 +77,9 @@ export default function Hero() {
             {/* Main Image */}
             <div className="relative z-10">
               <img 
-                src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
-                alt="International shipping and trade" 
-                className="rounded-3xl shadow-2xl w-full h-auto"
+                src={bannerImage} 
+                alt="GTPC - Promoting Indian Products Worldwide" 
+                className="rounded-3xl shadow-2xl w-full h-auto object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent rounded-3xl"></div>
             </div>
