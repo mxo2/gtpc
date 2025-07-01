@@ -11,6 +11,7 @@ interface FrappeLead {
   email_id?: string;
   mobile_no?: string;
   company_name?: string;
+  status?: string;
 }
 
 class FrappeCRMService {
@@ -63,7 +64,8 @@ class FrappeCRMService {
     const leadData: Partial<FrappeLead> = {
       lead_name: `${inquiry.firstName} ${inquiry.lastName} - ${inquiry.serviceInterest}`,
       email_id: inquiry.email,
-      company_name: `GTPC Inquiry: ${inquiry.serviceInterest}`
+      company_name: `GTPC Inquiry: ${inquiry.serviceInterest}`,
+      status: 'Open'
     };
 
     return this.createLead(leadData);
@@ -74,7 +76,8 @@ class FrappeCRMService {
       lead_name: `${membership.firstName} ${membership.lastName} - Membership`,
       email_id: membership.email,
       mobile_no: membership.phone || undefined,
-      company_name: membership.company || 'GTPC Membership Application'
+      company_name: membership.company || 'GTPC Membership Application',
+      status: 'Open'
     };
 
     return this.createLead(leadData);
@@ -85,7 +88,8 @@ class FrappeCRMService {
       lead_name: `${booking.firstName} ${booking.lastName} - Training ${booking.trainingType}`,
       email_id: booking.email,
       mobile_no: booking.phone,
-      company_name: booking.company || 'GTPC Training Booking'
+      company_name: booking.company || 'GTPC Training Booking',
+      status: 'Open'
     };
 
     return this.createLead(leadData);
@@ -96,7 +100,8 @@ class FrappeCRMService {
       lead_name: `${booking.firstName} ${booking.lastName} - Consultancy ${booking.consultancyTopic}`,
       email_id: booking.email,
       mobile_no: booking.phone,
-      company_name: booking.company || 'GTPC Consultancy Booking'
+      company_name: booking.company || 'GTPC Consultancy Booking',
+      status: 'Open'
     };
 
     return this.createLead(leadData);
