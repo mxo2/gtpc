@@ -11,9 +11,6 @@ interface FrappeLead {
   email_id?: string;
   mobile_no?: string;
   company_name?: string;
-  source?: string;
-  status?: string;
-  notes?: string;
 }
 
 class FrappeCRMService {
@@ -35,9 +32,8 @@ class FrappeCRMService {
     try {
       const url = `${this.config.baseUrl}/api/resource/Lead`;
       
+      // Only include valid fields for Frappe Lead
       const payload = {
-        status: 'Open',
-        source: 'Website',
         ...leadData
       };
 
@@ -54,7 +50,7 @@ class FrappeCRMService {
       }
 
       const result = await response.json();
-      console.log('Lead created successfully in Frappe CRM:', result.data?.name);
+      // Lead created successfully
       return result.data;
     } catch (error) {
       console.error('Error creating lead in Frappe CRM:', error);
@@ -65,9 +61,9 @@ class FrappeCRMService {
 
   async createLeadFromInquiry(inquiry: InsertInquiry): Promise<any> {
     const leadData: Partial<FrappeLead> = {
-      lead_name: `${inquiry.firstName} ${inquiry.lastName}`,
+      lead_name: `${inquiry.firstName} ${inquiry.lastName} - ${inquiry.serviceInterest}`,
       email_id: inquiry.email,
-      notes: `Service Interest: ${inquiry.serviceInterest}\nMessage: ${inquiry.message}\nType: General Inquiry`
+      company_name: `GTPC Inquiry: ${inquiry.serviceInterest}`
     };
 
     return this.createLead(leadData);
@@ -75,11 +71,10 @@ class FrappeCRMService {
 
   async createLeadFromMembership(membership: InsertMembership): Promise<any> {
     const leadData: Partial<FrappeLead> = {
-      lead_name: `${membership.firstName} ${membership.lastName}`,
+      lead_name: `${membership.firstName} ${membership.lastName} - Membership`,
       email_id: membership.email,
       mobile_no: membership.phone || undefined,
-      company_name: membership.company || undefined,
-      notes: `Type: Membership Application\nCompany: ${membership.company || 'Not provided'}\nPhone: ${membership.phone || 'Not provided'}\nPaid: ₹2999`
+      company_name: membership.company || 'GTPC Membership Application'
     };
 
     return this.createLead(leadData);
@@ -87,11 +82,10 @@ class FrappeCRMService {
 
   async createLeadFromTraining(booking: InsertTrainingBooking): Promise<any> {
     const leadData: Partial<FrappeLead> = {
-      lead_name: `${booking.firstName} ${booking.lastName}`,
+      lead_name: `${booking.firstName} ${booking.lastName} - Training ${booking.trainingType}`,
       email_id: booking.email,
       mobile_no: booking.phone,
-      company_name: booking.company || undefined,
-      notes: `Type: Training Booking\nTraining Type: ${booking.trainingType}\nDate: ${booking.preferredDate}\nCompany: ${booking.company || 'Not provided'}\nMessage: ${booking.message || 'No additional message'}\nPaid: ₹5999`
+      company_name: booking.company || 'GTPC Training Booking'
     };
 
     return this.createLead(leadData);
@@ -99,11 +93,10 @@ class FrappeCRMService {
 
   async createLeadFromConsultancy(booking: InsertConsultancyBooking): Promise<any> {
     const leadData: Partial<FrappeLead> = {
-      lead_name: `${booking.firstName} ${booking.lastName}`,
+      lead_name: `${booking.firstName} ${booking.lastName} - Consultancy ${booking.consultancyTopic}`,
       email_id: booking.email,
       mobile_no: booking.phone,
-      company_name: booking.company || undefined,
-      notes: `Type: Consultancy Booking\nTopic: ${booking.consultancyTopic}\nDate: ${booking.preferredDate}\nTime: ${booking.preferredTime}\nCompany: ${booking.company || 'Not provided'}\nMessage: ${booking.message || 'No additional message'}\nPaid: ₹2500`
+      company_name: booking.company || 'GTPC Consultancy Booking'
     };
 
     return this.createLead(leadData);
