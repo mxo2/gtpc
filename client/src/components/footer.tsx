@@ -3,7 +3,7 @@ import { Globe, Linkedin, Twitter, Facebook, Instagram } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Footer() {
-  const [logo, setLogo] = useState<string>("/attached_assets/Screenshot 2025-02-12 at 1.42.14 PM_1751085119897.png");
+  const [logo, setLogo] = useState<string>("/gtpc-logo.png");
   const [companyInfo, setCompanyInfo] = useState({
     name: "Global Trade Promotion Corporation",
     email: "info@gtpcglobal.com",
