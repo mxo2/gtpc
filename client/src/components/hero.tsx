@@ -4,12 +4,15 @@ import { ArrowRight, Ship, Globe, TrendingUp, Users, Award, MapPin } from "lucid
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white overflow-hidden">
-      {/* Background Elements */}
+    <section className="relative min-h-screen text-white overflow-hidden">
+      {/* Background Image */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-accent/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-accent/10 rounded-full blur-xl"></div>
-        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/5 rounded-full blur-lg"></div>
+        <img 
+          src="/hero-stats-banner.png" 
+          alt="GTPC Global Trade Services" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-blue-900/70 to-indigo-900/80"></div>
       </div>
 
       <div className="relative container mx-auto px-6 py-20">
