@@ -4,21 +4,21 @@ export default function Testimonials() {
   const testimonials = [
     {
       content: "GTPC's delegation program to Malaysia opened doors to partnerships I never imagined. The connections I made have transformed my business.",
-      author: "Sarah Johnson",
-      position: "Export Manager, TechCorp",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=64&h=64"
+      author: "Priya Sharma",
+      position: "Export Manager",
+      avatar: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=64&h=64"
     },
     {
       content: "The training programs are exceptional. I learned practical strategies that immediately improved my export operations efficiency.",
       author: "Rajesh Patel",
-      position: "CEO, Global Exports Ltd",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=64&h=64"
+      position: "CEO",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=64&h=64"
     },
     {
       content: "B2B meetings arranged by GTPC are highly targeted and productive. We've closed several major deals through their platform.",
-      author: "Maria Rodriguez",
-      position: "Director, International Trade",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=64&h=64"
+      author: "Anjali Mehta",
+      position: "Director",
+      avatar: "https://images.unsplash.com/photo-1573496359142-b89b8e4c1b65?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=64&h=64"
     }
   ];
 
