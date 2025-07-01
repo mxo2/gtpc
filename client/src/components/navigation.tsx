@@ -56,8 +56,8 @@ export default function Navigation() {
   const isActive = (href: string) => location === href;
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200">
-      <nav className="container mx-auto px-6 py-3">
+    <header className="bg-white sticky top-0 z-50 border-b border-gray-200 shadow-sm">
+      <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3">
             <div className="flex flex-col items-center">
@@ -77,10 +77,10 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`transition-colors font-medium ${
+                className={`transition-all duration-200 text-sm font-medium px-1 py-2 ${
                   isActive(link.href)
-                    ? "text-primary border-b-2 border-accent pb-1"
-                    : "text-gray-700 hover:text-primary hover:border-b-2 hover:border-accent hover:pb-1"
+                    ? "text-primary border-b-2 border-primary"
+                    : "text-gray-600 hover:text-primary"
                 }`}
               >
                 {link.label}
