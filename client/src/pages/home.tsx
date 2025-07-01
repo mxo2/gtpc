@@ -3,7 +3,7 @@ import Stats from "@/components/stats";
 import Testimonials from "@/components/testimonials";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Users, GraduationCap, ArrowRight, Check, Ship, Plane, Truck, Globe2, Building, FileText } from "lucide-react";
+import { TrendingUp, Users, GraduationCap, ArrowRight, Check, Ship, Plane, Truck, Globe2, Building, FileText, Calendar, MapPin } from "lucide-react";
 
 export default function Home() {
   const services = [
@@ -178,6 +178,67 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ISBBE Section - New B2C Exhibition Initiative */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-accent/5">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-accent/10 text-primary px-4 py-2 rounded-full mb-6">
+              <Calendar className="w-5 h-5" />
+              <span className="font-semibold">New Initiative</span>
+            </div>
+            <h2 className="text-4xl font-bold text-primary mb-4">
+              ISBBE - Indian Street Beyond Border Events
+            </h2>
+            <p className="text-xl text-gray-600">
+              Taking Indian products directly to global consumers through strategic B2C exhibitions 
+              across Africa, South America, Middle East, and Asia
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <MapPin className="w-10 h-10 text-accent mb-4" />
+              <h3 className="text-lg font-bold mb-2">Kenya 🇰🇪</h3>
+              <p className="text-gray-600">East African market gateway with growing consumer demand</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <MapPin className="w-10 h-10 text-accent mb-4" />
+              <h3 className="text-lg font-bold mb-2">Brazil 🇧🇷</h3>
+              <p className="text-gray-600">Latin America's largest economy and consumer market</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <MapPin className="w-10 h-10 text-accent mb-4" />
+              <h3 className="text-lg font-bold mb-2">Chile 🇨🇱</h3>
+              <p className="text-gray-600">Stable economy with high purchasing power consumers</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <MapPin className="w-10 h-10 text-accent mb-4" />
+              <h3 className="text-lg font-bold mb-2">Uzbekistan 🇺🇿</h3>
+              <p className="text-gray-600">Central Asian hub on the historic Silk Road</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <MapPin className="w-10 h-10 text-accent mb-4" />
+              <h3 className="text-lg font-bold mb-2">Malaysia 🇲🇾</h3>
+              <p className="text-gray-600">ASEAN business center with diverse consumer base</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <MapPin className="w-10 h-10 text-accent mb-4" />
+              <h3 className="text-lg font-bold mb-2">Dubai, UAE 🇦🇪</h3>
+              <p className="text-gray-600">Global trading hub and luxury market center</p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <Link href="/isbbe">
+              <Button size="lg" className="bg-primary text-white hover:bg-primary/90">
+                Explore ISBBE Exhibitions
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import { TrendingUp, Users, GraduationCap, Globe, Building, Briefcase } from "lucide-react";
+import { TrendingUp, Users, GraduationCap, Globe, Building, Briefcase, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "wouter";
@@ -63,6 +63,18 @@ export default function Services() {
         "Currency risk management",
         "Payment security solutions",
         "Credit insurance advice"
+      ]
+    },
+    {
+      icon: Calendar,
+      title: "ISBBE - B2C Exhibitions",
+      description: "Indian Street Beyond Border Events - Taking Indian products directly to global consumers through strategic B2C exhibitions.",
+      features: [
+        "International consumer exhibitions",
+        "Direct market access in 6 countries",
+        "Complete exhibition logistics",
+        "Brand building opportunities",
+        "Post-event order management"
       ]
     },
     {

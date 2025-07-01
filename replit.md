@@ -2,7 +2,7 @@
 
 ## Overview
 
-GTPC is a full-stack web application designed to connect global markets through expert consultancy, strategic partnerships, and comprehensive trade solutions. The application serves as a platform for international trade services, including B2B meetings, delegation programs, training workshops, and membership management.
+GTPC is a full-stack web application designed to connect global markets through expert consultancy, strategic partnerships, and comprehensive trade solutions. The application serves as a platform for international trade services, including B2B meetings, delegation programs, training workshops, membership management, and the new ISBBE (Indian Street Beyond Border Events) B2C exhibition initiative across 6 international locations.
 
 ## System Architecture
 
@@ -42,10 +42,11 @@ GTPC is a full-stack web application designed to connect global markets through 
 - `GET /api/memberships` - Retrieve all memberships (admin)
 
 ### Core Pages
-- **Home**: Landing page with hero section, services overview, and testimonials
-- **Services**: Detailed service offerings including consultancy and B2B meetings
+- **Home**: Landing page with hero section, services overview, ISBBE exhibitions, and testimonials
+- **Services**: Detailed service offerings including consultancy, B2B meetings, and ISBBE exhibitions
 - **Delegation**: International business delegation programs
 - **Training**: Online and offline training courses
+- **ISBBE**: B2C exhibition program across Kenya, Brazil, Chile, Uzbekistan, Malaysia, and Dubai
 - **Membership**: Membership signup and benefits
 - **Contact**: Contact form and company information
 
@@ -109,6 +110,7 @@ GTPC is a full-stack web application designed to connect global markets through 
 - June 28, 2025. Implemented comprehensive GitHub automation and deployment pipeline: Created GitHub Actions workflows for automatic code synchronization, set up Vercel deployment automation, added bank transfer payment modals with copy-to-clipboard functionality for all booking forms, created detailed deployment guides (DEPLOYMENT_AUTOMATION.md), and setup script for easy GitHub repository creation. Now any changes in Replit will automatically sync to GitHub and deploy to live website.
 - June 28, 2025. Added comprehensive legal compliance framework: Created Privacy Policy page with GDPR-compliant data handling procedures, Terms & Conditions page covering all GTPC services and payment policies, Cookies Policy explaining data collection practices, and implemented cookie consent banner with preference management. Updated footer with proper legal page links and corrected copyright year to 2025.
 - June 28, 2025. Implemented CMS Admin Panel: Created secure admin dashboard at /admin route (password: gtpc@admin2025) with logo upload functionality, company information management, and gallery image management. Navigation and footer components now dynamically update when admin changes logo or company info through localStorage. Created comprehensive CMS_ADMIN_GUIDE.md documentation for easy administration.
+- June 28, 2025. Added ISBBE (Indian Street Beyond Border Events) B2C Exhibition Program: Created dedicated ISBBE page showcasing B2C exhibitions across 6 international locations (Kenya, Brazil, Chile, Uzbekistan, Malaysia, Dubai). Added ISBBE to navigation menu, services page, and featured section on homepage. This new initiative takes Indian products directly to global consumers through strategic exhibitions in high-growth markets across Africa, South America, Middle East, and Asia.
 
 ## User Preferences
 

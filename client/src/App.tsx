@@ -19,6 +19,7 @@ import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsConditions from "@/pages/terms-conditions";
 import CookiesPolicy from "@/pages/cookies-policy";
 import Admin from "@/pages/admin";
+import ISBBE from "@/pages/isbbe";
 
 function Router() {
   return (
@@ -31,6 +32,7 @@ function Router() {
           <Route path="/delegation" component={Delegation} />
           <Route path="/training" component={Training} />
           <Route path="/consultancy" component={Consultancy} />
+          <Route path="/isbbe" component={ISBBE} />
           <Route path="/membership" component={Membership} />
           <Route path="/contact" component={Contact} />
           <Route path="/gallery" component={Gallery} />

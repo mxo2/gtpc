@@ -47,6 +47,7 @@ export default function Navigation() {
     { href: "/delegation", label: "Delegation" },
     { href: "/training", label: "Training" },
     { href: "/consultancy", label: "Consultancy" },
+    { href: "/isbbe", label: "ISBBE" },
     { href: "/membership", label: "Membership" },
     { href: "/gallery", label: "Gallery" },
     { href: "/contact", label: "Contact" },
