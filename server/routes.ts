@@ -140,6 +140,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Delete photo
+  app.delete("/api/photos/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deletePhoto(id);
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to delete photo" });
+    }
+  });
+
+  // Update photo
+  app.patch("/api/photos/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const photo = await storage.updatePhoto(id, req.body);
+      if (!photo) {
+        return res.status(404).json({ message: "Photo not found" });
+      }
+      res.json(photo);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to update photo" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

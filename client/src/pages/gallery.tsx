@@ -7,9 +7,8 @@ import { type Photo } from "@shared/schema";
 import { Camera, Calendar, MapPin, Users } from "lucide-react";
 
 export default function Gallery() {
-  const { data: photos, isLoading } = useQuery({
+  const { data: photos = [], isLoading } = useQuery<Photo[]>({
     queryKey: ["/api/photos/active"],
-    queryFn: getQueryFn({ on401: "returnNull" }),
   });
 
   const photoCategories = [
@@ -21,7 +20,7 @@ export default function Gallery() {
     "Office Facilities"
   ];
 
-  // Sample photos for demonstration since we don't have uploads yet
+  // Sample photos for demonstration when database is empty
   const samplePhotos: Photo[] = [
     {
       id: 1,

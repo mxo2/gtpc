@@ -25,6 +25,8 @@ export interface IStorage {
   createPhoto(photo: InsertPhoto): Promise<Photo>;
   getPhotos(): Promise<Photo[]>;
   getActivePhotos(): Promise<Photo[]>;
+  deletePhoto(id: number): Promise<void>;
+  updatePhoto(id: number, updates: Partial<Photo>): Promise<Photo | undefined>;
 }
 
 export class MemStorage implements IStorage {
@@ -176,10 +178,23 @@ export class MemStorage implements IStorage {
       .filter(photo => photo.isActive === 1)
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }
+  
+  async deletePhoto(id: number): Promise<void> {
+    this.photos.delete(id);
+  }
+  
+  async updatePhoto(id: number, updates: Partial<Photo>): Promise<Photo | undefined> {
+    const photo = this.photos.get(id);
+    if (!photo) return undefined;
+    
+    const updatedPhoto = { ...photo, ...updates };
+    this.photos.set(id, updatedPhoto);
+    return updatedPhoto;
+  }
 }
 
 // Database storage implementation
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import { db } from "./db";
 
 export class DatabaseStorage implements IStorage {
@@ -244,7 +259,16 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getActivePhotos(): Promise<Photo[]> {
-    return await db.select().from(photos);
+    return await db.select().from(photos).where(eq(photos.isActive, 1)).orderBy(desc(photos.createdAt));
+  }
+  
+  async deletePhoto(id: number): Promise<void> {
+    await db.delete(photos).where(eq(photos.id, id));
+  }
+  
+  async updatePhoto(id: number, updates: Partial<Photo>): Promise<Photo | undefined> {
+    const [updated] = await db.update(photos).set(updates).where(eq(photos.id, id)).returning();
+    return updated;
   }
 }
 

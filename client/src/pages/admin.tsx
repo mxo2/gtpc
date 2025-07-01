@@ -4,8 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Upload, Image, Settings, FileText, Save, Trash2 } from "lucide-react";
+import { Upload, Image, Settings, FileText, Save, Trash2, X, Check, Edit2 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
+import { Badge } from "@/components/ui/badge";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { queryClient, apiRequest } from "@/lib/queryClient";
+import { type Photo, type InsertPhoto } from "@shared/schema";
 
 export default function Admin() {
   const { toast } = useToast();
@@ -19,6 +26,83 @@ export default function Admin() {
   const [contactEmail, setContactEmail] = useState("info@gtpcglobal.com");
   const [contactPhone, setContactPhone] = useState("");
   const [contactAddress, setContactAddress] = useState("14 & 29, KEDIA BUSINESS CENTRE, JAIPUR-302012 RJ");
+  
+  // Photo Gallery Management States
+  const [selectedCategory, setSelectedCategory] = useState<string>("B2B Meetings");
+  const [photoTitle, setPhotoTitle] = useState("");
+  const [photoDescription, setPhotoDescription] = useState("");
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string>("");
+  const [editingPhoto, setEditingPhoto] = useState<Photo | null>(null);
+  
+  const photoCategories = [
+    "B2B Meetings",
+    "Delegation Programs", 
+    "Training Sessions",
+    "Corporate Events",
+    "Trade Exhibitions",
+    "Office Facilities"
+  ];
+  
+  // Query to fetch all photos
+  const { data: photos = [], isLoading: photosLoading } = useQuery<Photo[]>({
+    queryKey: ["/api/photos"],
+    enabled: isAuthenticated,
+  });
+  
+  // Mutation to create photo
+  const createPhotoMutation = useMutation({
+    mutationFn: async (data: InsertPhoto) => {
+      return apiRequest("POST", "/api/photos", data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/photos"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/photos/active"] });
+      toast({
+        title: "Photo uploaded successfully",
+        description: "The photo has been added to the gallery",
+      });
+      resetPhotoForm();
+    },
+    onError: () => {
+      toast({
+        title: "Upload failed",
+        description: "Failed to upload photo. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+  
+  // Mutation to delete photo
+  const deletePhotoMutation = useMutation({
+    mutationFn: async (id: number) => {
+      return apiRequest("DELETE", `/api/photos/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/photos"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/photos/active"] });
+      toast({
+        title: "Photo deleted",
+        description: "The photo has been removed from the gallery",
+      });
+    },
+  });
+  
+  // Mutation to update photo
+  const updatePhotoMutation = useMutation({
+    mutationFn: async ({ id, data }: { id: number; data: Partial<Photo> }) => {
+      return apiRequest("PATCH", `/api/photos/${id}`, data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/photos"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/photos/active"] });
+      toast({
+        title: "Photo updated",
+        description: "The photo details have been updated",
+      });
+      setEditingPhoto(null);
+    },
+  });
 
   // Simple authentication
   const handleLogin = () => {
@@ -36,6 +120,66 @@ export default function Admin() {
       });
     }
   };
+  
+  // Reset photo form
+  const resetPhotoForm = () => {
+    setPhotoTitle("");
+    setPhotoDescription("");
+    setPhotoFile(null);
+    setPhotoPreview("");
+    setEditingPhoto(null);
+  };
+  
+  // Handle photo file selection
+  const handlePhotoFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setPhotoFile(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPhotoPreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  
+  // Upload photo
+  const handlePhotoUpload = async () => {
+    if (!photoFile || !photoTitle || !selectedCategory) {
+      toast({
+        title: "Missing information",
+        description: "Please fill in all required fields",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // In a real app, you would upload the file to a server/CDN
+    // For now, we'll use a placeholder URL
+    const photoData: InsertPhoto = {
+      title: photoTitle,
+      description: photoDescription,
+      imageUrl: photoPreview, // In production, this would be the uploaded file URL
+      category: selectedCategory,
+      uploadedBy: "Admin",
+    };
+    
+    createPhotoMutation.mutate(photoData);
+  };
+  
+  // Toggle photo active status
+  const togglePhotoStatus = (photo: Photo) => {
+    updatePhotoMutation.mutate({
+      id: photo.id,
+      data: { isActive: photo.isActive === 1 ? 0 : 1 },
+    });
+  };
+  
+  // Filter photos by category
+  const photosByCategory = photoCategories.reduce((acc, category) => {
+    acc[category] = photos.filter((photo: Photo) => photo.category === category);
+    return acc;
+  }, {} as Record<string, Photo[]>);
 
   // Handle logo upload
   const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -163,10 +307,11 @@ export default function Admin() {
         </div>
 
         <Tabs defaultValue="logo" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="logo">Logo & Branding</TabsTrigger>
             <TabsTrigger value="company">Company Info</TabsTrigger>
             <TabsTrigger value="gallery">Gallery</TabsTrigger>
+            <TabsTrigger value="photos">Photo Gallery</TabsTrigger>
           </TabsList>
 
           <TabsContent value="logo">
@@ -338,6 +483,153 @@ export default function Admin() {
                   <Save className="w-4 h-4 mr-2" />
                   Save Gallery
                 </Button>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="photos">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Image className="w-5 h-5" />
+                  Photo Gallery Management
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Upload New Photo Section */}
+                <div className="border-b pb-6">
+                  <h3 className="text-lg font-semibold mb-4">Upload New Photo</h3>
+                  <div className="grid gap-4">
+                    <div>
+                      <Label htmlFor="photo-category">Category *</Label>
+                      <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                        <SelectTrigger id="photo-category">
+                          <SelectValue placeholder="Select a category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {photoCategories.map((category) => (
+                            <SelectItem key={category} value={category}>
+                              {category}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="photo-title">Title *</Label>
+                      <Input
+                        id="photo-title"
+                        value={photoTitle}
+                        onChange={(e) => setPhotoTitle(e.target.value)}
+                        placeholder="Enter photo title"
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="photo-description">Description</Label>
+                      <Textarea
+                        id="photo-description"
+                        value={photoDescription}
+                        onChange={(e) => setPhotoDescription(e.target.value)}
+                        placeholder="Enter photo description (optional)"
+                        rows={3}
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="photo-file">Photo File *</Label>
+                      <Input
+                        id="photo-file"
+                        type="file"
+                        accept="image/*"
+                        onChange={handlePhotoFileChange}
+                      />
+                      {photoPreview && (
+                        <div className="mt-2">
+                          <img
+                            src={photoPreview}
+                            alt="Preview"
+                            className="h-32 w-auto rounded-lg"
+                          />
+                        </div>
+                      )}
+                    </div>
+
+                    <Button 
+                      onClick={handlePhotoUpload}
+                      disabled={!photoFile || !photoTitle || createPhotoMutation.isPending}
+                      className="w-full"
+                    >
+                      <Upload className="w-4 h-4 mr-2" />
+                      {createPhotoMutation.isPending ? "Uploading..." : "Upload Photo"}
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Photo Gallery by Category */}
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">Manage Photos</h3>
+                  {photosLoading ? (
+                    <div className="text-center py-8">Loading photos...</div>
+                  ) : (
+                    <div className="space-y-6">
+                      {photoCategories.map((category) => {
+                        const categoryPhotos = photosByCategory[category] || [];
+                        return (
+                          <div key={category} className="border rounded-lg p-4">
+                            <h4 className="font-medium mb-3 flex items-center justify-between">
+                              <span>{category}</span>
+                              <Badge variant="secondary">{categoryPhotos.length} photos</Badge>
+                            </h4>
+                            {categoryPhotos.length === 0 ? (
+                              <p className="text-gray-500 text-sm">No photos in this category yet.</p>
+                            ) : (
+                              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                {categoryPhotos.map((photo) => (
+                                  <div key={photo.id} className="relative group">
+                                    <img
+                                      src={photo.imageUrl}
+                                      alt={photo.title}
+                                      className="w-full h-32 object-cover rounded-lg"
+                                    />
+                                    <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2">
+                                      <Button
+                                        size="sm"
+                                        variant={photo.isActive === 1 ? "default" : "secondary"}
+                                        onClick={() => togglePhotoStatus(photo)}
+                                      >
+                                        {photo.isActive === 1 ? <Check className="w-4 h-4" /> : <X className="w-4 h-4" />}
+                                      </Button>
+                                      <Button
+                                        size="sm"
+                                        variant="destructive"
+                                        onClick={() => deletePhotoMutation.mutate(photo.id)}
+                                      >
+                                        <Trash2 className="w-4 h-4" />
+                                      </Button>
+                                    </div>
+                                    <div className="mt-2">
+                                      <p className="text-sm font-medium truncate">{photo.title}</p>
+                                      {photo.description && (
+                                        <p className="text-xs text-gray-500 truncate">{photo.description}</p>
+                                      )}
+                                      <div className="flex items-center justify-between mt-1">
+                                        <Badge variant={photo.isActive === 1 ? "default" : "secondary"} className="text-xs">
+                                          {photo.isActive === 1 ? "Active" : "Inactive"}
+                                        </Badge>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
