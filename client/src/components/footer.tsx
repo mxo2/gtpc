@@ -39,16 +39,9 @@ export default function Footer() {
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-2">
-            <div className="flex flex-col items-start mb-6">
-              <img 
-                src={logo} 
-                alt="GTPC Logo" 
-                className="h-14 w-auto mb-3"
-              />
-              <div>
-                <h1 className="text-lg font-bold">{companyInfo.name}</h1>
-                <p className="text-sm text-gray-400">Connecting Global Markets</p>
-              </div>
+            <div className="mb-6">
+              <h1 className="text-2xl font-bold mb-2">{companyInfo.name}</h1>
+              <p className="text-sm text-gray-400">Connecting Global Markets</p>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
               Connecting global markets through expert consultancy, strategic partnerships, 
