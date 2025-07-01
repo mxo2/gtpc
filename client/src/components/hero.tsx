@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Ship, Globe, TrendingUp, Users, Award, MapPin } from "lucide-react";
-import bannerImage from "@assets/ChatGPT Image Jul 1, 2025, 04_26_01 PM_1751367401568.png";
+import bannerImage from "@assets/ChatGPT Image Jul 1, 2025, 04_26_01 PM_1751373630130.png";
 
 export default function Hero() {
   return (
