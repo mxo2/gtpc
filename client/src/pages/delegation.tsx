@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
-import { MapPin, Calendar, Users, Briefcase } from "lucide-react";
+import { MapPin, Calendar, Users, Briefcase, Check, X, Building, Package, Globe, Hotel } from "lucide-react";
 
 export default function Delegation() {
   const delegations = [
@@ -10,81 +10,171 @@ export default function Delegation() {
       country: "Malaysia",
       description: "Southeast Asia trade hub with growing opportunities",
       image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
-      duration: "5 Days",
+      duration: "3N/4D",
       participants: "15-20",
       highlights: [
-        "Government trade ministry meetings",
-        "B2B sessions with Malaysian importers",
-        "Port and logistics facility visits",
-        "Cultural orientation and networking",
-        "Market research presentations"
+        "B2B Meeting with Malaysian Business Council",
+        "Medical Facility Visit",
+        "Meeting with Malaysian Chamber of Commerce",
+        "Meeting with Hypermarket Procurement Department",
+        "Market Visit"
       ],
-      industries: ["Electronics", "Textiles", "Pharmaceuticals", "Agriculture"],
-      nextDate: "March 2025"
+      focusedSectors: ["Electronics", "Textiles", "Halal Food Products", "Medical Devices"],
+      benefits: [
+        "Direct access to business leads",
+        "Expand market presence",
+        "Gain insight into fast-growing Market"
+      ],
+      includes: [
+        "3N/4D Hotel Stay with Breakfast",
+        "Visa Processing",
+        "Local Transfers",
+        "Assured B2B Meetings"
+      ],
+      excludes: [
+        "Airfare",
+        "Lunch & Dinner",
+        "Airport Pickup and Drop",
+        "Travel Insurance"
+      ],
+      nextDate: "March 2025",
+      seatsAvailable: "Limited"
     },
     {
       country: "Russia",
       description: "Gateway to Eurasian markets with vast potential",
       image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
-      duration: "6 Days",
+      duration: "3N/4D",
       participants: "12-18",
       highlights: [
-        "Moscow Chamber of Commerce meetings",
-        "Energy sector partnership opportunities",
-        "Technology transfer discussions",
-        "Industrial zone visits",
-        "Legal and regulatory briefings"
+        "B2B Meeting with Russian Business Council",
+        "Medical Facility Visit",
+        "Meeting with Moscow Chamber of Commerce",
+        "Meeting with Hypermarket Procurement Department",
+        "Market Visit"
       ],
-      industries: ["Energy", "Technology", "Mining", "Chemicals"],
-      nextDate: "April 2025"
+      focusedSectors: ["Agriculture", "Processed Food", "Pharmaceuticals", "Technology"],
+      benefits: [
+        "Direct access to business leads",
+        "Expand market presence",
+        "Gain insight into fast-growing Market"
+      ],
+      includes: [
+        "3N/4D Hotel Stay with Breakfast",
+        "Visa Processing",
+        "Local Transfers",
+        "Assured B2B Meetings"
+      ],
+      excludes: [
+        "Airfare",
+        "Lunch & Dinner",
+        "Airport Pickup and Drop",
+        "Travel Insurance"
+      ],
+      nextDate: "April 2025",
+      seatsAvailable: "Limited"
     },
     {
       country: "USA",
       description: "World's largest economy and innovation leader",
       image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
-      duration: "7 Days",
+      duration: "3N/4D",
       participants: "20-25",
       highlights: [
-        "Silicon Valley tech company visits",
-        "Wall Street financial institutions",
-        "Trade exhibition participation",
-        "FDA and regulatory consultations",
-        "Investment opportunity presentations"
+        "B2B Meeting with American Business Council",
+        "Medical Facility Visit",
+        "Meeting with US Chamber of Commerce",
+        "Meeting with Hypermarket Procurement Department",
+        "Market Visit"
       ],
-      industries: ["Technology", "Healthcare", "Finance", "Manufacturing"],
-      nextDate: "May 2025"
+      focusedSectors: ["Technology", "Healthcare", "Organic Food", "Pharmaceuticals"],
+      benefits: [
+        "Direct access to business leads",
+        "Expand market presence",
+        "Gain insight into fast-growing Market"
+      ],
+      includes: [
+        "3N/4D Hotel Stay with Breakfast",
+        "Visa Processing",
+        "Local Transfers",
+        "Assured B2B Meetings"
+      ],
+      excludes: [
+        "Airfare",
+        "Lunch & Dinner",
+        "Airport Pickup and Drop",
+        "Travel Insurance"
+      ],
+      nextDate: "May 2025",
+      seatsAvailable: "Limited"
     },
     {
       country: "Japan",
       description: "Technology and innovation powerhouse",
       image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
-      duration: "6 Days",
+      duration: "3N/4D",
       participants: "15-20",
       highlights: [
-        "JETRO collaboration meetings",
-        "Automotive industry partnerships",
-        "Technology innovation centers",
-        "Quality standards workshops",
-        "Cultural business etiquette training"
+        "B2B Meeting with Japanese Business Council",
+        "Medical Facility Visit",
+        "Meeting with Japan Chamber of Commerce",
+        "Meeting with Hypermarket Procurement Department",
+        "Market Visit"
       ],
-      industries: ["Automotive", "Electronics", "Robotics", "Precision Instruments"],
-      nextDate: "June 2025"
+      focusedSectors: ["Automotive Parts", "Electronics", "Processed Food", "Pharmaceuticals"],
+      benefits: [
+        "Direct access to business leads",
+        "Expand market presence",
+        "Gain insight into fast-growing Market"
+      ],
+      includes: [
+        "3N/4D Hotel Stay with Breakfast",
+        "Visa Processing",
+        "Local Transfers",
+        "Assured B2B Meetings"
+      ],
+      excludes: [
+        "Airfare",
+        "Lunch & Dinner",
+        "Airport Pickup and Drop",
+        "Travel Insurance"
+      ],
+      nextDate: "June 2025",
+      seatsAvailable: "Limited"
     },
     {
       country: "UAE",
       description: "Middle East trade center and logistics hub",
       image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
-      duration: "5 Days",
+      duration: "3N/4D",
       participants: "18-22",
       highlights: [
-        "Dubai Chamber of Commerce sessions",
-        "Free zone authority meetings",
-        "Logistics and shipping consultations",
-        "Islamic finance discussions",
-        "Regional market entry strategies"
+        "B2B Meeting with UAE Business Council",
+        "Medical Facility Visit",
+        "Meeting with Dubai Chamber of Commerce",
+        "Meeting with Hypermarket Procurement Department",
+        "Market Visit"
       ],
-      industries: ["Logistics", "Finance", "Construction", "Hospitality"],
-      nextDate: "July 2025"
+      focusedSectors: ["Agriculture", "Processed Food", "Spices", "Pharmaceuticals"],
+      benefits: [
+        "Direct access to business leads",
+        "Expand market presence",
+        "Gain insight into fast-growing Market"
+      ],
+      includes: [
+        "3N/4D Hotel Stay with Breakfast",
+        "Visa Processing",
+        "Local Transfers",
+        "Assured B2B Meetings"
+      ],
+      excludes: [
+        "Airfare",
+        "Lunch & Dinner",
+        "Airport Pickup and Drop",
+        "Travel Insurance"
+      ],
+      nextDate: "July 2025",
+      seatsAvailable: "Limited"
     }
   ];
 
@@ -160,16 +250,86 @@ export default function Delegation() {
                       </ul>
                     </div>
 
+                    {/* Why Participate */}
+                    {delegation.benefits && (
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                          <Check className="w-5 h-5 text-primary mr-2" />
+                          Why Participate?
+                        </h4>
+                        <ul className="space-y-2">
+                          {delegation.benefits.map((benefit, benefitIndex) => (
+                            <li key={benefitIndex} className="flex items-start space-x-2">
+                              <Check className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
+                              <span className="text-gray-600">{benefit}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Focused Sectors */}
                     <div className="mb-6">
-                      <h4 className="font-semibold text-gray-900 mb-3">Focus Industries</h4>
+                      <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                        <Package className="w-5 h-5 text-primary mr-2" />
+                        Focused Sectors
+                      </h4>
                       <div className="flex flex-wrap gap-2">
-                        {delegation.industries.map((industry, industryIndex) => (
-                          <Badge key={industryIndex} variant="secondary">
-                            {industry}
+                        {(delegation.focusedSectors || delegation.industries || []).map((sector, sectorIndex) => (
+                          <Badge key={sectorIndex} variant="secondary">
+                            {sector}
                           </Badge>
                         ))}
                       </div>
                     </div>
+
+                    {/* Package Details */}
+                    <div className="grid md:grid-cols-2 gap-6 mb-6">
+                      {/* Includes */}
+                      {delegation.includes && (
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                            <Check className="w-5 h-5 text-green-500 mr-2" />
+                            Includes
+                          </h4>
+                          <ul className="space-y-2">
+                            {delegation.includes.map((item, includeIndex) => (
+                              <li key={includeIndex} className="flex items-start space-x-2">
+                                <Check className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
+                                <span className="text-gray-600 text-sm">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Excludes */}
+                      {delegation.excludes && (
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                            <X className="w-5 h-5 text-red-500 mr-2" />
+                            Excludes
+                          </h4>
+                          <ul className="space-y-2">
+                            {delegation.excludes.map((item, excludeIndex) => (
+                              <li key={excludeIndex} className="flex items-start space-x-2">
+                                <X className="w-4 h-4 text-red-500 mt-1 flex-shrink-0" />
+                                <span className="text-gray-600 text-sm">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Limited Seats Badge */}
+                    {delegation.seatsAvailable && (
+                      <div className="mb-6">
+                        <Badge className="bg-red-500 text-white">
+                          {delegation.seatsAvailable} Seats Available!
+                        </Badge>
+                      </div>
+                    )}
 
                     <div className="flex flex-col sm:flex-row gap-3">
                       <Link href="/contact">
