@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertInquirySchema, insertMembershipSchema, insertTrainingBookingSchema, insertConsultancyBookingSchema, insertPhotoSchema } from "@shared/schema";
 import { z } from "zod";
+import { frappeCRM } from "./frappe-crm";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission
@@ -10,6 +11,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const inquiry = insertInquirySchema.parse(req.body);
       const created = await storage.createInquiry(inquiry);
+      
+      // Create lead in Frappe CRM
+      await frappeCRM.createLeadFromInquiry(inquiry);
+      
       res.json(created);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -35,6 +40,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const membership = insertMembershipSchema.parse(req.body);
       const created = await storage.createMembership(membership);
+      
+      // Create lead in Frappe CRM
+      await frappeCRM.createLeadFromMembership(membership);
+      
       res.json(created);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -60,6 +69,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const booking = insertTrainingBookingSchema.parse(req.body);
       const created = await storage.createTrainingBooking(booking);
+      
+      // Create lead in Frappe CRM
+      await frappeCRM.createLeadFromTraining(booking);
+      
       res.json(created);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -85,6 +98,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const booking = insertConsultancyBookingSchema.parse(req.body);
       const created = await storage.createConsultancyBooking(booking);
+      
+      // Create lead in Frappe CRM
+      await frappeCRM.createLeadFromConsultancy(booking);
+      
       res.json(created);
     } catch (error) {
       if (error instanceof z.ZodError) {
