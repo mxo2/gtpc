@@ -305,64 +305,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Import Export Visual Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/5 to-accent/5">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-primary mb-6">
-                Seamless Import-Export Solutions
-              </h2>
-              <p className="text-xl text-gray-600 mb-6">
-                Navigate the complexities of international trade with our comprehensive 
-                import-export services. We handle everything from documentation to logistics, 
-                ensuring your goods move smoothly across borders.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <Check className="w-6 h-6 text-green-500 mt-1" />
-                  <div>
-                    <h4 className="font-semibold">Complete Documentation Support</h4>
-                    <p className="text-gray-600">Export-import licenses, customs clearance, certificates of origin</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <Check className="w-6 h-6 text-green-500 mt-1" />
-                  <div>
-                    <h4 className="font-semibold">Regulatory Compliance</h4>
-                    <p className="text-gray-600">Stay compliant with international trade regulations and standards</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <Check className="w-6 h-6 text-green-500 mt-1" />
-                  <div>
-                    <h4 className="font-semibold">End-to-End Logistics</h4>
-                    <p className="text-gray-600">From supplier to customer, we manage the entire supply chain</p>
-                  </div>
-                </div>
-              </div>
-              <Link href="/consultancy">
-                <Button size="lg" className="mt-8 bg-primary text-white hover:bg-primary/90">
-                  Get Import-Export Consultation
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </Link>
-            </div>
-            <div className="relative">
-              <img 
-                src="/import-export-containers.jpg" 
-                alt="Import Export Containers" 
-                className="rounded-2xl shadow-2xl w-full"
-              />
-              <div className="absolute -bottom-6 -right-6 bg-accent text-primary p-6 rounded-xl shadow-lg">
-                <p className="text-2xl font-bold">50+</p>
-                <p className="text-sm">Countries Connected</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Membership Section */}
       <section className="py-20 gradient-primary text-white">
         <div className="container mx-auto px-6">
