@@ -81,7 +81,6 @@ export default function Hero() {
                 alt="GTPC - Promoting Indian Products Worldwide" 
                 className="rounded-3xl shadow-2xl w-full h-auto object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent rounded-3xl"></div>
             </div>
 
             {/* Floating Stats Cards */}
