@@ -20,6 +20,8 @@ import TermsConditions from "@/pages/terms-conditions";
 import CookiesPolicy from "@/pages/cookies-policy";
 import Admin from "@/pages/admin";
 import ISBBE from "@/pages/isbbe";
+import CancellationRefund from "@/pages/cancellation-refund";
+import ShippingDelivery from "@/pages/shipping-delivery";
 
 function Router() {
   return (
@@ -39,6 +41,8 @@ function Router() {
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/terms-conditions" component={TermsConditions} />
           <Route path="/cookies-policy" component={CookiesPolicy} />
+          <Route path="/cancellation-refund" component={CancellationRefund} />
+          <Route path="/shipping-delivery" component={ShippingDelivery} />
           <Route path="/admin" component={Admin} />
           <Route component={NotFound} />
         </Switch>

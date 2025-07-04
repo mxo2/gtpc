@@ -103,10 +103,12 @@ export default function Footer() {
             <p className="text-gray-400 text-sm">
               © 2025 GTPC Global Trade Promotion Corporation. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
+            <div className="flex flex-wrap gap-4 mt-4 md:mt-0 justify-center md:justify-end">
               <Link href="/privacy-policy" className="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</Link>
               <Link href="/terms-conditions" className="text-gray-400 hover:text-white text-sm transition-colors">Terms & Conditions</Link>
               <Link href="/cookies-policy" className="text-gray-400 hover:text-white text-sm transition-colors">Cookies Policy</Link>
+              <Link href="/cancellation-refund" className="text-gray-400 hover:text-white text-sm transition-colors">Cancellation & Refund</Link>
+              <Link href="/shipping-delivery" className="text-gray-400 hover:text-white text-sm transition-colors">Service Delivery</Link>
             </div>
           </div>
         </div>
