@@ -11,7 +11,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { insertInquirySchema, type InsertInquiry } from "@shared/schema";
-import { MapPin, Phone, Mail, Send, CheckCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Send, CheckCircle, Linkedin, Facebook, Twitter } from "lucide-react";
 
 export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -185,6 +185,40 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-xl font-bold text-gray-900 mb-6">Connect With Us</h3>
+              <div className="flex space-x-4">
+                <a 
+                  href="https://www.linkedin.com/company/gtpc/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center hover:bg-accent transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-6 h-6 text-white" />
+                </a>
+                <a 
+                  href="https://twitter.com/gtpc_india" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center hover:bg-accent transition-colors"
+                  aria-label="Twitter/X"
+                >
+                  <Twitter className="w-6 h-6 text-white" />
+                </a>
+                <a 
+                  href="https://www.facebook.com/people/GTPC/61577775519184/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center hover:bg-accent transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-6 h-6 text-white" />
+                </a>
+              </div>
+              <p className="text-gray-600 mt-4">Follow us for updates on trade opportunities and industry insights</p>
             </div>
           </div>
           

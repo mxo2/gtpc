@@ -49,28 +49,31 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a 
-                href="#" 
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                href="https://www.linkedin.com/company/gtpc/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-accent transition-colors"
+                aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
               <a 
-                href="#" 
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                href="https://twitter.com/gtpc_india" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-accent transition-colors"
+                aria-label="Twitter/X"
               >
                 <Twitter className="w-5 h-5" />
               </a>
               <a 
-                href="#" 
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
+                href="https://www.facebook.com/people/GTPC/61577775519184/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-accent transition-colors"
+                aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
-              >
-                <Instagram className="w-5 h-5" />
               </a>
             </div>
           </div>
