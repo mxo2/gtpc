@@ -52,8 +52,32 @@ export default function Membership() {
     },
   });
 
-  const onSubmit = (data: InsertMembership) => {
-    membershipMutation.mutate(data);
+  const onSubmit = async (data: InsertMembership) => {
+    try {
+      // First, send the data to backend for CRM integration
+      await apiRequest("POST", "/api/membership", data);
+      
+      // Store form data in localStorage to pass to external membership portal
+      localStorage.setItem('membershipData', JSON.stringify(data));
+      
+      // Show success message
+      toast({
+        title: "Redirecting to Membership Portal",
+        description: "Taking you to complete your membership registration...",
+      });
+      
+      // Redirect to external membership portal after a short delay
+      setTimeout(() => {
+        window.location.href = 'https://my.gtpcglobal.com/membership-sdmzb';
+      }, 1500);
+      
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to process your request. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const benefits = [
@@ -298,10 +322,13 @@ export default function Membership() {
                     type="submit" 
                     size="lg" 
                     className="w-full bg-accent text-gray-900 hover:bg-accent/90"
-                    disabled={membershipMutation.isPending}
                   >
-                    {membershipMutation.isPending ? "Processing..." : "Become a Member - ₹2,999/year"}
+                    Join Now - ₹2,999/year
                   </Button>
+                  
+                  <p className="text-sm text-gray-600 text-center mt-4">
+                    You will be redirected to our secure membership portal to complete your registration and payment.
+                  </p>
                 </form>
               </Form>
             </CardContent>
