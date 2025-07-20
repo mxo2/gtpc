@@ -110,7 +110,7 @@ class FrappeCRMService {
 
 // Initialize with your Frappe CRM credentials
 export const frappeCRM = new FrappeCRMService({
-  apiKey: 'ff3003a4a524995',
-  apiSecret: 'a7dc60dee526800',
+  apiKey: '065b37817f49ea2',
+  apiSecret: '99f2d036af12e32',
   baseUrl: 'https://my.gtpcglobal.com'
 });
