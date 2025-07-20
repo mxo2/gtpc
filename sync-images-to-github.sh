@@ -12,17 +12,19 @@ if [ ! -d .git ]; then
     exit 1
 fi
 
-# Add the attached_assets directory to git
-echo "Adding attached_assets images to git..."
+# Add the attached_assets directory and favicon files to git
+echo "Adding attached_assets images and favicon files to git..."
 git add attached_assets/
+git add client/public/favicon*
+git add client/public/manifest.json
 
 # Check if there are changes to commit
 if git diff --cached --quiet; then
     echo "No new images to sync."
 else
     # Commit the images
-    echo "Committing images..."
-    git commit -m "Add GTPC promotional banner images and assets"
+    echo "Committing images and favicon files..."
+    git commit -m "Add GTPC promotional banner images, favicon files and assets"
     
     # Push to GitHub
     echo "Pushing to GitHub..."
