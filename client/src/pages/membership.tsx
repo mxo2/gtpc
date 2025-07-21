@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,11 +9,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { insertMembershipSchema, type InsertMembership } from "@shared/schema";
-import { Check, Star, Users, Globe, GraduationCap, Calendar, Shield, Headphones, CheckCircle, CreditCard, Copy } from "lucide-react";
+import { Check, Star, Users, Globe, Shield, Calendar, GraduationCap, Headphones } from "lucide-react";
 
 export default function Membership() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showPayment, setShowPayment] = useState(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -36,10 +34,9 @@ export default function Membership() {
     },
     onSuccess: () => {
       setIsSubmitted(true);
-      setShowPayment(true);
       toast({
         title: "Application Submitted!",
-        description: "Please complete payment to activate your membership.",
+        description: "Our team will contact you within 24 hours to complete your membership.",
       });
       queryClient.invalidateQueries({ queryKey: ["/api/memberships"] });
     },
@@ -52,32 +49,8 @@ export default function Membership() {
     },
   });
 
-  const onSubmit = async (data: InsertMembership) => {
-    try {
-      // First, send the data to backend for CRM integration
-      await apiRequest("POST", "/api/membership", data);
-      
-      // Store form data in localStorage to pass to external membership portal
-      localStorage.setItem('membershipData', JSON.stringify(data));
-      
-      // Show success message
-      toast({
-        title: "Redirecting to Membership Portal",
-        description: "Taking you to complete your membership registration...",
-      });
-      
-      // Redirect to external membership portal after a short delay
-      setTimeout(() => {
-        window.location.href = 'https://my.gtpcglobal.com/membership-sdmzb';
-      }, 1500);
-      
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to process your request. Please try again.",
-        variant: "destructive",
-      });
-    }
+  const onSubmit = (data: InsertMembership) => {
+    membershipMutation.mutate(data);
   };
 
   const benefits = [
@@ -196,6 +169,13 @@ export default function Membership() {
                 </div>
                 <span className="ml-2 text-gray-600">4.9/5 member satisfaction</span>
               </div>
+              <div className="mt-6">
+                <a href="https://my.gtpcglobal.com/signup" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="bg-accent text-gray-900 hover:bg-accent/90">
+                    Become a Member
+                  </Button>
+                </a>
+              </div>
             </CardHeader>
           </Card>
         </div>
@@ -235,13 +215,28 @@ export default function Membership() {
           </div>
         </div>
 
+        {/* Divider */}
+        <div className="max-w-4xl mx-auto mb-16 text-center">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-4 bg-white text-gray-500">OR</span>
+            </div>
+          </div>
+          <p className="mt-4 text-gray-600">
+            Already have your details ready? Use the form below to submit your membership application
+          </p>
+        </div>
+
         {/* Signup Form */}
         <div className="max-w-2xl mx-auto">
           <Card>
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl">Join GTPC Today</CardTitle>
+              <CardTitle className="text-2xl">Submit Membership Application</CardTitle>
               <CardDescription>
-                Fill out the form below to start your premium membership
+                Fill out this form and our team will contact you within 24 hours
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -297,7 +292,7 @@ export default function Membership() {
                       <FormItem>
                         <FormLabel>Company Name (Optional)</FormLabel>
                         <FormControl>
-                          <Input placeholder="Enter your company name" {...field} />
+                          <Input placeholder="Enter your company name" {...field} value={field.value || ''} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -311,7 +306,7 @@ export default function Membership() {
                       <FormItem>
                         <FormLabel>Phone Number (Optional)</FormLabel>
                         <FormControl>
-                          <Input placeholder="Enter your phone number" {...field} />
+                          <Input placeholder="Enter your phone number" {...field} value={field.value || ''} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -321,13 +316,14 @@ export default function Membership() {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full bg-accent text-gray-900 hover:bg-accent/90"
+                    className="w-full bg-primary hover:bg-primary/90"
+                    disabled={membershipMutation.isPending}
                   >
-                    Join Now - ₹2,999/year
+                    {membershipMutation.isPending ? "Processing..." : "Submit Application"}
                   </Button>
                   
                   <p className="text-sm text-gray-600 text-center mt-4">
-                    You will be redirected to our secure membership portal to complete your registration and payment.
+                    Fill out this form to submit your membership application. Our team will contact you within 24 hours.
                   </p>
                 </form>
               </Form>
@@ -335,110 +331,7 @@ export default function Membership() {
           </Card>
         </div>
 
-        {/* Payment Information Modal */}
-        {showPayment && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-8 h-8 text-green-600" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Membership Application Submitted!</h3>
-                <p className="text-gray-600">Please complete your payment to activate your premium membership.</p>
-              </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-6">
-                <div className="flex items-center mb-4">
-                  <CreditCard className="w-6 h-6 text-blue-600 mr-3" />
-                  <h4 className="text-lg font-semibold text-gray-900">Bank Transfer Details</h4>
-                </div>
-                
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center py-2 border-b border-blue-200">
-                    <span className="text-gray-600">Account Name:</span>
-                    <div className="flex items-center">
-                      <span className="font-semibold text-gray-900 text-sm">Global Trade Promotion Corporation</span>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => {
-                          navigator.clipboard.writeText("Global Trade Promotion Corporation");
-                          toast({ title: "Copied!", description: "Account name copied to clipboard" });
-                        }}
-                        className="ml-2 p-1 h-auto"
-                      >
-                        <Copy className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <div className="flex justify-between items-center py-2 border-b border-blue-200">
-                    <span className="text-gray-600">Account Number:</span>
-                    <div className="flex items-center">
-                      <span className="font-semibold text-gray-900">678605600736</span>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => {
-                          navigator.clipboard.writeText("678605600736");
-                          toast({ title: "Copied!", description: "Account number copied to clipboard" });
-                        }}
-                        className="ml-2 p-1 h-auto"
-                      >
-                        <Copy className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <div className="flex justify-between items-center py-2 border-b border-blue-200">
-                    <span className="text-gray-600">IFSC Code:</span>
-                    <div className="flex items-center">
-                      <span className="font-semibold text-gray-900">ICICI0006786</span>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => {
-                          navigator.clipboard.writeText("ICICI0006786");
-                          toast({ title: "Copied!", description: "IFSC code copied to clipboard" });
-                        }}
-                        className="ml-2 p-1 h-auto"
-                      >
-                        <Copy className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <div className="flex justify-between items-center py-2 border-b border-blue-200">
-                    <span className="text-gray-600">Branch:</span>
-                    <span className="font-semibold text-gray-900">Tilak Marg Branch</span>
-                  </div>
-                  
-                  <div className="flex justify-between items-center py-2">
-                    <span className="text-gray-600">Annual Fee:</span>
-                    <span className="font-bold text-lg text-green-600">₹2,999</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
-                <h5 className="font-semibold text-gray-900 mb-2">Important Notes:</h5>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  <li>• Please include your name and "Membership" in the transfer reference</li>
-                  <li>• Share payment screenshot/details via WhatsApp or email</li>
-                  <li>• Membership will be activated within 24 hours of payment</li>
-                  <li>• Online payment integration coming soon</li>
-                </ul>
-              </div>
-
-              <Button 
-                onClick={() => setShowPayment(false)}
-                className="w-full bg-primary text-white hover:bg-primary/90"
-              >
-                Got it, I'll make the payment
-              </Button>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
