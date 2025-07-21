@@ -327,11 +327,11 @@ export default function Home() {
                   <p className="text-gray-600 mb-8">
                     Join our exclusive network of global trade professionals and unlock premium benefits.
                   </p>
-                  <Link href="/membership">
+                  <a href="https://my.gtpcglobal.com/signup" target="_blank" rel="noopener noreferrer">
                     <Button size="lg" className="bg-accent text-gray-900 hover:bg-accent/90 w-full lg:w-auto">
                       Become a Member
                     </Button>
-                  </Link>
+                  </a>
                 </div>
                 
                 <div className="space-y-4">

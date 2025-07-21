@@ -89,11 +89,11 @@ export default function Navigation() {
           </div>
           
           <div className="flex items-center space-x-4">
-            <Link href="/membership">
+            <a href="https://my.gtpcglobal.com/signup" target="_blank" rel="noopener noreferrer">
               <Button className="hidden sm:inline-flex bg-primary hover:bg-primary/90">
                 Join Now
               </Button>
-            </Link>
+            </a>
             
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
@@ -117,9 +117,9 @@ export default function Navigation() {
                       {link.label}
                     </Link>
                   ))}
-                  <Link href="/membership" onClick={() => setIsOpen(false)}>
+                  <a href="https://my.gtpcglobal.com/signup" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>
                     <Button className="w-full mt-4">Join Now</Button>
-                  </Link>
+                  </a>
                 </div>
               </SheetContent>
             </Sheet>
