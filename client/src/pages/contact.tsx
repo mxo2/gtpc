@@ -67,10 +67,10 @@ export default function Contact() {
     },
     {
       icon: Phone,
-      title: "Phone",
+      title: "Contact",
       details: [
-        "+91 141 1234 5678",
-        "+91 98765 43210"
+        "WhatsApp: +91 98296 49640",
+        "Telegram: @sam_panwar"
       ]
     },
     {

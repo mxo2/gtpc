@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Globe, Linkedin, Twitter, Facebook, Instagram } from "lucide-react";
+import { Globe, Linkedin, Twitter, Facebook, Instagram, Phone, MessageCircle, Send } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Footer() {
@@ -37,7 +37,7 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-white py-16">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-2">
             <div className="mb-6">
               <h1 className="text-2xl font-bold mb-2">{companyInfo.name}</h1>
@@ -76,6 +76,24 @@ export default function Footer() {
                 <Facebook className="w-5 h-5" />
               </a>
             </div>
+          </div>
+          
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Contact Us</h3>
+            <ul className="space-y-3">
+              <li className="flex items-center space-x-2">
+                <MessageCircle className="w-4 h-4 text-accent" />
+                <a href="https://wa.me/919829649640" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+                  WhatsApp: +91 98296 49640
+                </a>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Send className="w-4 h-4 text-accent" />
+                <a href="https://t.me/sam_panwar" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+                  Telegram: @sam_panwar
+                </a>
+              </li>
+            </ul>
           </div>
           
           <div>
