@@ -130,6 +130,7 @@ export default function Footer() {
               <Link href="/cookies-policy" className="text-gray-400 hover:text-white text-sm transition-colors">Cookies Policy</Link>
               <Link href="/cancellation-refund" className="text-gray-400 hover:text-white text-sm transition-colors">Cancellation & Refund</Link>
               <Link href="/shipping-delivery" className="text-gray-400 hover:text-white text-sm transition-colors">Service Delivery</Link>
+              <Link href="/data-deletion" className="text-gray-400 hover:text-white text-sm transition-colors">Data Deletion</Link>
             </div>
           </div>
         </div>

@@ -22,6 +22,7 @@ import Admin from "@/pages/admin";
 import ISBBE from "@/pages/isbbe";
 import CancellationRefund from "@/pages/cancellation-refund";
 import ShippingDelivery from "@/pages/shipping-delivery";
+import DataDeletion from "@/pages/data-deletion";
 
 function Router() {
   return (
@@ -43,6 +44,7 @@ function Router() {
           <Route path="/cookies-policy" component={CookiesPolicy} />
           <Route path="/cancellation-refund" component={CancellationRefund} />
           <Route path="/shipping-delivery" component={ShippingDelivery} />
+          <Route path="/data-deletion" component={DataDeletion} />
           <Route path="/admin" component={Admin} />
           <Route component={NotFound} />
         </Switch>
