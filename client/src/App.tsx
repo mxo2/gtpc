@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import CookieBanner from "@/components/cookie-banner";
+import SEOHead from "@/components/seo-head";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import Delegation from "@/pages/delegation";
@@ -23,10 +24,12 @@ import ISBBE from "@/pages/isbbe";
 import CancellationRefund from "@/pages/cancellation-refund";
 import ShippingDelivery from "@/pages/shipping-delivery";
 import DataDeletion from "@/pages/data-deletion";
+import AdminSEO from "@/pages/admin-seo";
 
 function Router() {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead />
       <Navigation />
       <main className="flex-1">
         <Switch>
@@ -46,6 +49,7 @@ function Router() {
           <Route path="/shipping-delivery" component={ShippingDelivery} />
           <Route path="/data-deletion" component={DataDeletion} />
           <Route path="/admin" component={Admin} />
+          <Route path="/admin/seo" component={AdminSEO} />
           <Route component={NotFound} />
         </Switch>
       </main>

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Upload, Image, Settings, FileText, Save, Trash2, X, Check, Edit2 } from "lucide-react";
+import { Upload, Image, Settings, FileText, Save, Trash2, X, Check, Edit2, Search } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
@@ -301,9 +301,33 @@ export default function Admin() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-12">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Admin Panel</h1>
-          <p className="text-lg text-gray-600">Manage your website content</p>
+        <div className="mb-8 flex justify-between items-start">
+          <div>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">Admin Panel</h1>
+            <p className="text-lg text-gray-600">Manage your website content</p>
+          </div>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              onClick={() => window.location.href = '/admin/seo'}
+            >
+              <Search className="w-4 h-4 mr-2" />
+              SEO Management
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setIsAuthenticated(false);
+                setPassword("");
+                toast({
+                  title: "Logged Out",
+                  description: "You have been logged out successfully",
+                });
+              }}
+            >
+              Logout
+            </Button>
+          </div>
         </div>
 
         <Tabs defaultValue="logo" className="space-y-6">
@@ -634,22 +658,6 @@ export default function Admin() {
             </Card>
           </TabsContent>
         </Tabs>
-
-        <div className="mt-8 text-center">
-          <Button
-            variant="outline"
-            onClick={() => {
-              setIsAuthenticated(false);
-              setPassword("");
-              toast({
-                title: "Logged Out",
-                description: "You have been logged out successfully",
-              });
-            }}
-          >
-            Logout
-          </Button>
-        </div>
       </div>
     </div>
   );
