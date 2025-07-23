@@ -14,6 +14,14 @@ import dubaiPhoto3 from "@assets/WhatsApp Image 2025-02-02 at 12.40.02 PM (2)_17
 import dubaiPhoto4 from "@assets/WhatsApp Image 2025-02-02 at 12.40.02 PM_1753252049788.jpeg";
 import dubaiPhoto5 from "@assets/WhatsApp Image 2025-02-02 at 12.40.03 PM_1753252049788.jpeg";
 
+// Import new Dubai event photos
+import newDubaiPhoto1 from "@assets/1_1753253993608.jpg";
+import newDubaiPhoto2 from "@assets/200A8616_1753254016392.jpg";
+import newDubaiPhoto3 from "@assets/3P8A2079_1753254024640.JPG?url";
+import newDubaiPhoto4 from "@assets/IMG_3576_1753254042218.jpg";
+import newDubaiPhoto5 from "@assets/_NM_9382_1753254073036.JPG?url";
+import newDubaiPhoto6 from "@assets/8_1753254114534.JPG?url";
+
 // Import all Malaysia photos
 import malaysiaPhoto1 from "@assets/PHOTO-2025-07-16-19-39-53 2_1753252207939.jpg";
 import malaysiaPhoto2 from "@assets/PHOTO-2025-07-16-19-52-52 4_1753252207943.jpg";
@@ -33,6 +41,13 @@ const assetMap: Record<string, string> = {
   "/assets/PHOTO-2025-07-16-19-53-25 2_1753252207943.jpg": malaysiaPhoto3,
   "/assets/PHOTO-2025-07-16-19-53-25 3_1753252207944.jpg": malaysiaPhoto4,
   "/assets/PHOTO-2025-07-16-19-52-52 3_1753252207944.jpg": malaysiaPhoto5,
+  // New Dubai event photos
+  "/assets/1_1753253993608.jpg": newDubaiPhoto1,
+  "/assets/200A8616_1753254016392.jpg": newDubaiPhoto2,
+  "/assets/3P8A2079_1753254024640.JPG": newDubaiPhoto3,
+  "/assets/IMG_3576_1753254042218.jpg": newDubaiPhoto4,
+  "/assets/_NM_9382_1753254073036.JPG": newDubaiPhoto5,
+  "/assets/8_1753254114534.JPG": newDubaiPhoto6,
 };
 
 export default function Gallery() {
