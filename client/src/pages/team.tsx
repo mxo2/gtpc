@@ -18,6 +18,26 @@ interface TeamMember {
   image?: string;
 }
 
+// Generate avatar background colors based on name
+const getAvatarColor = (name: string) => {
+  const colors = [
+    'from-blue-400 to-blue-600',
+    'from-purple-400 to-purple-600',
+    'from-green-400 to-green-600',
+    'from-pink-400 to-pink-600',
+    'from-indigo-400 to-indigo-600',
+    'from-teal-400 to-teal-600',
+    'from-orange-400 to-orange-600',
+    'from-red-400 to-red-600',
+    'from-yellow-400 to-yellow-600',
+  ];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return colors[Math.abs(hash) % colors.length];
+};
+
 const teamMembers: TeamMember[] = [
   {
     id: 1,
@@ -221,7 +241,7 @@ export default function Team() {
                               className="w-20 h-20 rounded-full object-cover"
                             />
                           ) : (
-                            <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                            <div className={`w-20 h-20 rounded-full flex items-center justify-center bg-gradient-to-br ${getAvatarColor(member.name)} text-white text-2xl font-bold`}>
                               {member.name.split(' ').map(n => n[0]).join('')}
                             </div>
                           )}
