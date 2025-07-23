@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Mail, Linkedin, Globe } from "lucide-react";
 import SeoHead from "@/components/seo-head";
 import prSharmaImage from "@assets/IMG_0795-1_1753249706475.png";
-import samPanwarImage from "@assets/image_1753250059134.png";
+import samPanwarImage from "@assets/IMG_2944 5_1753250276990.jpg";
 
 interface TeamMember {
   id: number;
