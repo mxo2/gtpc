@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Mail, Linkedin, Globe } from "lucide-react";
 import SeoHead from "@/components/seo-head";
+import prSharmaImage from "@assets/IMG_0795-1_1753249706475.png";
 
 interface TeamMember {
   id: number;
@@ -19,14 +20,15 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: "Rajesh Kumar",
-    role: "Chief Executive Officer",
+    name: "P.R. Sharma",
+    role: "Director",
     location: "Jaipur",
     country: "India",
-    bio: "Visionary leader with 25+ years in international trade. Pioneered GTPC's global expansion strategy.",
-    expertise: ["Strategic Planning", "International Relations", "Trade Policy"],
-    email: "ceo@gtpcglobal.com",
-    linkedin: "https://linkedin.com/in/rajeshkumar"
+    bio: "Distinguished leader with 30+ years in government and trade promotion. Former CEO of Rajasthan Export Promotion Council, Joint Director Industries, and Advisor to Chairman MOEFCCPC. Currently serving as Director of GTPC, spearheading global expansion through international expos, delegations, and exporter training programs.",
+    expertise: ["Export Promotion", "Government Relations", "Trade Policy", "Industrial Development"],
+    email: "director@gtpcglobal.com",
+    linkedin: "https://linkedin.com/in/prsharma",
+    image: prSharmaImage
   },
   {
     id: 2,
@@ -199,9 +201,17 @@ export default function Team() {
                       <CardContent className="p-6">
                         {/* Profile Header */}
                         <div className="flex items-start gap-4 mb-4">
-                          <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                            {member.name.split(' ').map(n => n[0]).join('')}
-                          </div>
+                          {member.image ? (
+                            <img 
+                              src={member.image}
+                              alt={member.name}
+                              className="w-20 h-20 rounded-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                              {member.name.split(' ').map(n => n[0]).join('')}
+                            </div>
+                          )}
                           <div className="flex-1">
                             <h3 className="text-xl font-semibold text-gray-900">{member.name}</h3>
                             <p className="text-sm text-gray-600 font-medium">{member.role}</p>
