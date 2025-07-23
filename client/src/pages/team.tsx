@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Mail, Linkedin, Globe } from "lucide-react";
 import SeoHead from "@/components/seo-head";
 import prSharmaImage from "@assets/IMG_0795-1_1753249706475.png";
+import samPanwarImage from "@assets/image_1753250059134.png";
 
 interface TeamMember {
   id: number;
@@ -32,6 +33,18 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 2,
+    name: "Sam Panwar",
+    role: "Chief Operating Officer",
+    location: "Jaipur",
+    country: "India",
+    bio: "Dynamic business strategist with expertise in international trade operations. Leading GTPC's operational excellence and digital transformation initiatives. Key contact for business inquiries and partnerships.",
+    expertise: ["Operations Management", "Digital Strategy", "Business Development", "International Trade"],
+    email: "sam@gtpcglobal.com",
+    linkedin: "https://www.linkedin.com/in/sam-panwar-7524b014/",
+    image: samPanwarImage
+  },
+  {
+    id: 3,
     name: "Sarah Johnson",
     role: "Director of Operations - Americas",
     location: "New York",
@@ -42,7 +55,7 @@ const teamMembers: TeamMember[] = [
     linkedin: "https://linkedin.com/in/sarahjohnson"
   },
   {
-    id: 3,
+    id: 4,
     name: "Ahmed Hassan",
     role: "Regional Head - Middle East & Africa",
     location: "Dubai",
@@ -52,7 +65,7 @@ const teamMembers: TeamMember[] = [
     email: "ahmed.h@gtpcglobal.com"
   },
   {
-    id: 4,
+    id: 5,
     name: "Liu Wei",
     role: "Asia-Pacific Trade Specialist",
     location: "Singapore",
@@ -63,7 +76,7 @@ const teamMembers: TeamMember[] = [
     linkedin: "https://linkedin.com/in/liuwei"
   },
   {
-    id: 5,
+    id: 6,
     name: "Maria Silva",
     role: "Business Development Manager - Latin America",
     location: "São Paulo",
@@ -73,7 +86,7 @@ const teamMembers: TeamMember[] = [
     email: "maria.s@gtpcglobal.com"
   },
   {
-    id: 6,
+    id: 7,
     name: "John Smith",
     role: "European Trade Consultant",
     location: "London",
@@ -83,7 +96,7 @@ const teamMembers: TeamMember[] = [
     linkedin: "https://linkedin.com/in/johnsmith"
   },
   {
-    id: 7,
+    id: 8,
     name: "Priya Sharma",
     role: "Head of Training & Development",
     location: "Mumbai",
@@ -93,7 +106,7 @@ const teamMembers: TeamMember[] = [
     email: "priya.s@gtpcglobal.com"
   },
   {
-    id: 8,
+    id: 9,
     name: "Carlos Rodriguez",
     role: "Trade Relations Officer - Chile",
     location: "Santiago",
@@ -103,7 +116,7 @@ const teamMembers: TeamMember[] = [
     email: "carlos.r@gtpcglobal.com"
   },
   {
-    id: 9,
+    id: 10,
     name: "Fatima Al-Rashid",
     role: "Kenya Operations Manager",
     location: "Nairobi",
@@ -113,7 +126,7 @@ const teamMembers: TeamMember[] = [
     linkedin: "https://linkedin.com/in/fatimaalrashid"
   },
   {
-    id: 10,
+    id: 11,
     name: "Ivan Petrov",
     role: "Central Asia Trade Specialist",
     location: "Tashkent",
