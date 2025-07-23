@@ -252,7 +252,7 @@ export default function Team() {
                                 member.name.toLowerCase().includes('fatima') 
                                   ? 'women' 
                                   : 'men'
-                              }/${member.id}.jpg`}
+                              }/${member.name.toLowerCase().includes('liu wei') ? '22' : member.id}.jpg`}
                               alt={member.name}
                               className="w-20 h-20 rounded-full object-cover"
                               onError={(e) => {
