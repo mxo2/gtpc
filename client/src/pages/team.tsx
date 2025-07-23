@@ -244,9 +244,30 @@ export default function Team() {
                               className="w-20 h-20 rounded-full object-cover"
                             />
                           ) : (
-                            <div className={`w-20 h-20 rounded-full flex items-center justify-center bg-gradient-to-br ${getAvatarColor(member.name)} text-white text-2xl font-bold`}>
-                              {member.name.split(' ').map(n => n[0]).join('')}
-                            </div>
+                            <img 
+                              src={`https://randomuser.me/api/portraits/${
+                                member.name.toLowerCase().includes('sarah') || 
+                                member.name.toLowerCase().includes('maria') || 
+                                member.name.toLowerCase().includes('priya') || 
+                                member.name.toLowerCase().includes('fatima') 
+                                  ? 'women' 
+                                  : 'men'
+                              }/${member.id}.jpg`}
+                              alt={member.name}
+                              className="w-20 h-20 rounded-full object-cover"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.onerror = null;
+                                target.style.display = 'none';
+                                const parent = target.parentElement;
+                                if (parent) {
+                                  const fallback = document.createElement('div');
+                                  fallback.className = `w-20 h-20 rounded-full flex items-center justify-center bg-gradient-to-br ${getAvatarColor(member.name)} text-white text-2xl font-bold`;
+                                  fallback.textContent = member.name.split(' ').map(n => n[0]).join('');
+                                  parent.appendChild(fallback);
+                                }
+                              }}
+                            />
                           )}
                           <div className="flex-1">
                             <h3 className="text-xl font-semibold text-gray-900">{member.name}</h3>
