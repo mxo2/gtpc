@@ -27,7 +27,7 @@ const teamMembers: TeamMember[] = [
     bio: "Distinguished leader with 30+ years in government and trade promotion. Former CEO of Rajasthan Export Promotion Council, Joint Director Industries, and Advisor to Chairman MOEFCCPC. Currently serving as Director of GTPC, spearheading global expansion through international expos, delegations, and exporter training programs.",
     expertise: ["Export Promotion", "Government Relations", "Trade Policy", "Industrial Development"],
     email: "director@gtpcglobal.com",
-    linkedin: "https://linkedin.com/in/prsharma",
+    linkedin: "https://www.linkedin.com/in/p-r-sharma-global-trade-promotion-corporation-gtpc-2b929831/",
     image: prSharmaImage
   },
   {
