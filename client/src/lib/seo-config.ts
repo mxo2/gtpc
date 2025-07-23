@@ -71,6 +71,13 @@ export const seoConfig: Record<string, SEOConfig> = {
     ogTitle: 'GTPC Photo Gallery',
     ogDescription: 'Visual journey of successful trade delegations, B2B meetings, and international partnerships.',
   },
+  '/team': {
+    title: 'Our Global Team | GTPC International Trade Experts',
+    description: 'Meet GTPC\'s worldwide team of trade experts across 10+ countries. Experienced professionals in export-import consultancy, B2B networking, and international business.',
+    keywords: 'GTPC team, trade experts, global team, international consultants, export specialists, business advisors',
+    ogTitle: 'GTPC Global Team - Trade Experts Worldwide',
+    ogDescription: 'Expert professionals across 6 continents united in connecting global markets and facilitating international trade.',
+  },
   '/admin': {
     title: 'Admin Dashboard | GTPC Content Management',
     description: 'Manage GTPC website content, inquiries, and gallery.',

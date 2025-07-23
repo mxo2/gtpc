@@ -1,0 +1,293 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { MapPin, Mail, Linkedin, Globe } from "lucide-react";
+import SeoHead from "@/components/seo-head";
+
+interface TeamMember {
+  id: number;
+  name: string;
+  role: string;
+  location: string;
+  country: string;
+  bio: string;
+  expertise: string[];
+  email?: string;
+  linkedin?: string;
+  image?: string;
+}
+
+const teamMembers: TeamMember[] = [
+  {
+    id: 1,
+    name: "Rajesh Kumar",
+    role: "Chief Executive Officer",
+    location: "Jaipur",
+    country: "India",
+    bio: "Visionary leader with 25+ years in international trade. Pioneered GTPC's global expansion strategy.",
+    expertise: ["Strategic Planning", "International Relations", "Trade Policy"],
+    email: "ceo@gtpcglobal.com",
+    linkedin: "https://linkedin.com/in/rajeshkumar"
+  },
+  {
+    id: 2,
+    name: "Sarah Johnson",
+    role: "Director of Operations - Americas",
+    location: "New York",
+    country: "USA",
+    bio: "Expert in North and South American trade regulations. Manages partnerships across 15 countries.",
+    expertise: ["Trade Compliance", "Market Analysis", "B2B Networking"],
+    email: "sarah.j@gtpcglobal.com",
+    linkedin: "https://linkedin.com/in/sarahjohnson"
+  },
+  {
+    id: 3,
+    name: "Ahmed Hassan",
+    role: "Regional Head - Middle East & Africa",
+    location: "Dubai",
+    country: "UAE",
+    bio: "Specialist in MENA region trade dynamics. Leading ISBBE exhibitions across Africa.",
+    expertise: ["Export Management", "Cultural Intelligence", "Exhibition Planning"],
+    email: "ahmed.h@gtpcglobal.com"
+  },
+  {
+    id: 4,
+    name: "Liu Wei",
+    role: "Asia-Pacific Trade Specialist",
+    location: "Singapore",
+    country: "Singapore",
+    bio: "Facilitates trade connections across APAC region. Expert in Asian market entry strategies.",
+    expertise: ["Market Research", "Trade Finance", "Supply Chain"],
+    email: "liu.w@gtpcglobal.com",
+    linkedin: "https://linkedin.com/in/liuwei"
+  },
+  {
+    id: 5,
+    name: "Maria Silva",
+    role: "Business Development Manager - Latin America",
+    location: "São Paulo",
+    country: "Brazil",
+    bio: "Driving GTPC's expansion in Latin America. Specializes in Brazil-India trade corridors.",
+    expertise: ["Business Development", "Portuguese Markets", "ISBBE Exhibitions"],
+    email: "maria.s@gtpcglobal.com"
+  },
+  {
+    id: 6,
+    name: "John Smith",
+    role: "European Trade Consultant",
+    location: "London",
+    country: "United Kingdom",
+    bio: "20 years experience in EU-India trade. Expert in post-Brexit trade opportunities.",
+    expertise: ["EU Regulations", "Trade Agreements", "Consultancy"],
+    linkedin: "https://linkedin.com/in/johnsmith"
+  },
+  {
+    id: 7,
+    name: "Priya Sharma",
+    role: "Head of Training & Development",
+    location: "Mumbai",
+    country: "India",
+    bio: "Designs and delivers export-import training programs. Certified international trade educator.",
+    expertise: ["Training Design", "Curriculum Development", "Online Education"],
+    email: "priya.s@gtpcglobal.com"
+  },
+  {
+    id: 8,
+    name: "Carlos Rodriguez",
+    role: "Trade Relations Officer - Chile",
+    location: "Santiago",
+    country: "Chile",
+    bio: "Manages Pacific Alliance trade opportunities. Expert in mining and agriculture exports.",
+    expertise: ["Pacific Alliance", "Mining Trade", "Agricultural Exports"],
+    email: "carlos.r@gtpcglobal.com"
+  },
+  {
+    id: 9,
+    name: "Fatima Al-Rashid",
+    role: "Kenya Operations Manager",
+    location: "Nairobi",
+    country: "Kenya",
+    bio: "Leading ISBBE exhibitions in East Africa. Specialist in Africa-India trade promotion.",
+    expertise: ["Event Management", "African Markets", "Trade Promotion"],
+    linkedin: "https://linkedin.com/in/fatimaalrashid"
+  },
+  {
+    id: 10,
+    name: "Ivan Petrov",
+    role: "Central Asia Trade Specialist",
+    location: "Tashkent",
+    country: "Uzbekistan",
+    bio: "Facilitating trade through the Silk Road region. Expert in Central Asian market dynamics.",
+    expertise: ["Silk Road Trade", "Logistics", "Cultural Mediation"],
+    email: "ivan.p@gtpcglobal.com"
+  }
+];
+
+// Group team members by region
+const regions = [
+  { name: "Asia", countries: ["India", "Singapore", "Uzbekistan"] },
+  { name: "Americas", countries: ["USA", "Brazil", "Chile"] },
+  { name: "Middle East & Africa", countries: ["UAE", "Kenya"] },
+  { name: "Europe", countries: ["United Kingdom"] }
+];
+
+export default function Team() {
+  const getRegionForCountry = (country: string) => {
+    for (const region of regions) {
+      if (region.countries.includes(country)) {
+        return region.name;
+      }
+    }
+    return "Other";
+  };
+
+  const groupedMembers = teamMembers.reduce((acc, member) => {
+    const region = getRegionForCountry(member.country);
+    if (!acc[region]) {
+      acc[region] = [];
+    }
+    acc[region].push(member);
+    return acc;
+  }, {} as Record<string, TeamMember[]>);
+
+  return (
+    <>
+      <SeoHead />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+        {/* Hero Section */}
+        <section className="relative bg-gradient-to-br from-slate-900 to-blue-900 text-white py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 animate__animated animate__fadeInUp">
+                Our Global Team
+              </h1>
+              <p className="text-xl mb-8 text-blue-100 animate__animated animate__fadeInUp animate__delay-1s">
+                Expert professionals spanning 6 continents, united in our mission to connect global markets
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 animate__animated animate__fadeInUp animate__delay-2s">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-yellow-400">10+</div>
+                  <div className="text-sm text-blue-100 mt-1">Countries</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-yellow-400">50+</div>
+                  <div className="text-sm text-blue-100 mt-1">Team Members</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-yellow-400">100+</div>
+                  <div className="text-sm text-blue-100 mt-1">Years Combined Experience</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-yellow-400">24/7</div>
+                  <div className="text-sm text-blue-100 mt-1">Global Coverage</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Team Members by Region */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            {Object.entries(groupedMembers).map(([region, members]) => (
+              <div key={region} className="mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+                  {region}
+                </h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {members.map((member) => (
+                    <Card key={member.id} className="hover:shadow-xl transition-shadow duration-300">
+                      <CardContent className="p-6">
+                        {/* Profile Header */}
+                        <div className="flex items-start gap-4 mb-4">
+                          <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                            {member.name.split(' ').map(n => n[0]).join('')}
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-xl font-semibold text-gray-900">{member.name}</h3>
+                            <p className="text-sm text-gray-600 font-medium">{member.role}</p>
+                            <div className="flex items-center gap-1 mt-1 text-sm text-gray-500">
+                              <MapPin className="w-3 h-3" />
+                              <span>{member.location}, {member.country}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Bio */}
+                        <p className="text-gray-700 mb-4 text-sm leading-relaxed">
+                          {member.bio}
+                        </p>
+
+                        {/* Expertise */}
+                        <div className="mb-4">
+                          <div className="flex flex-wrap gap-2">
+                            {member.expertise.map((skill, idx) => (
+                              <Badge key={idx} variant="secondary" className="text-xs">
+                                {skill}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Contact Links */}
+                        <div className="flex gap-3 pt-4 border-t">
+                          {member.email && (
+                            <a
+                              href={`mailto:${member.email}`}
+                              className="text-gray-600 hover:text-blue-600 transition-colors"
+                              title={`Email ${member.name}`}
+                            >
+                              <Mail className="w-5 h-5" />
+                            </a>
+                          )}
+                          {member.linkedin && (
+                            <a
+                              href={member.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-gray-600 hover:text-blue-600 transition-colors"
+                              title={`${member.name} on LinkedIn`}
+                            >
+                              <Linkedin className="w-5 h-5" />
+                            </a>
+                          )}
+                          <div className="ml-auto">
+                            <Globe className="w-5 h-5 text-gray-400" />
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Join Our Team CTA */}
+        <section className="bg-gradient-to-br from-blue-600 to-purple-700 text-white py-16">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-6">Join Our Global Team</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto">
+              We're always looking for talented professionals who share our passion for connecting global markets.
+              Be part of our mission to facilitate international trade.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Career Opportunities
+              </a>
+              <a
+                href="/contact"
+                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all"
+              >
+                Partner With Us
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+}

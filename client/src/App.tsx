@@ -15,6 +15,7 @@ import Membership from "@/pages/membership";
 import Contact from "@/pages/contact";
 import Consultancy from "@/pages/consultancy";
 import Gallery from "@/pages/gallery";
+import Team from "@/pages/team";
 import NotFound from "@/pages/not-found";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsConditions from "@/pages/terms-conditions";
@@ -42,6 +43,7 @@ function Router() {
           <Route path="/membership" component={Membership} />
           <Route path="/contact" component={Contact} />
           <Route path="/gallery" component={Gallery} />
+          <Route path="/team" component={Team} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/terms-conditions" component={TermsConditions} />
           <Route path="/cookies-policy" component={CookiesPolicy} />

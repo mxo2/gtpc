@@ -50,6 +50,7 @@ export default function Navigation() {
     { href: "/isbbe", label: "ISBBE" },
     { href: "/membership", label: "Membership" },
     { href: "/gallery", label: "Gallery" },
+    { href: "/team", label: "Team" },
     { href: "/contact", label: "Contact" },
   ];
 
