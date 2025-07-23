@@ -4,6 +4,7 @@ import { MapPin, Mail, Linkedin, Globe } from "lucide-react";
 import SeoHead from "@/components/seo-head";
 import prSharmaImage from "@assets/IMG_0795-1_1753249706475.png";
 import samPanwarImage from "@assets/IMG_2944 5_1753250276990.jpg";
+import csBhatiaImage from "@assets/WhatsApp Image 2025-02-02 at 12.06.28 PM_1753250724034.jpeg";
 
 interface TeamMember {
   id: number;
@@ -76,13 +77,15 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 4,
-    name: "Ahmed Hassan",
-    role: "Regional Head - Middle East & Africa",
+    name: "CS Bhatia",
+    role: "Regional Director - Middle East",
     location: "Dubai",
     country: "UAE",
-    bio: "Specialist in MENA region trade dynamics. Leading ISBBE exhibitions across Africa.",
-    expertise: ["Export Management", "Cultural Intelligence", "Exhibition Planning"],
-    email: "ahmed.h@gtpcglobal.com"
+    bio: "Veteran business consultant with 40+ years of experience in government relations and Dubai business setup. Expert in facilitating Indian businesses in UAE market, organizing trade delegations, and providing comprehensive business establishment services.",
+    expertise: ["Government Relations", "Dubai Business Setup", "Trade Organization", "Business Consulting"],
+    email: "cs.bhatia@gtpcglobal.com",
+    linkedin: "https://linkedin.com/in/csbhatia",
+    image: csBhatiaImage
   },
   {
     id: 5,
