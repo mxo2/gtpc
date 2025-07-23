@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getQueryFn } from "@/lib/queryClient";
 import { type Photo } from "@shared/schema";
-import { Camera, Calendar, MapPin, Users } from "lucide-react";
+import { Camera, Calendar, MapPin, Users, ArrowLeft, Globe } from "lucide-react";
 
 // Import all Dubai photos
 import dubaiPhoto1 from "@assets/WhatsApp Image 2025-02-02 at 12.37.50 PM_1753252049778.jpeg";
@@ -38,6 +39,8 @@ export default function Gallery() {
   const { data: photos = [], isLoading } = useQuery<Photo[]>({
     queryKey: ["/api/photos/active"],
   });
+  
+  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
 
   const photoCategories = [
     "B2B Meetings",
@@ -47,6 +50,48 @@ export default function Gallery() {
     "Trade Exhibitions",
     "Office Facilities"
   ];
+  
+  // Define countries and their related keywords for photo grouping
+  const countryData = [
+    { 
+      name: "Dubai, UAE",
+      keywords: ["dubai", "uae", "emirates"],
+      image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      description: "Strategic partnerships and B2B events in the UAE"
+    },
+    {
+      name: "Malaysia",
+      keywords: ["malaysia", "kuala lumpur", "mitec"],
+      image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      description: "ISBBE exhibition planning and trade partnerships"
+    },
+    {
+      name: "Japan",
+      keywords: ["japan", "tokyo"],
+      image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      description: "Technology partnerships and innovation exchange"
+    },
+    {
+      name: "Russia",
+      keywords: ["russia", "moscow"],
+      image: "https://images.unsplash.com/photo-1547448415-e9f5b28e570d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      description: "Energy sector collaborations and trade missions"
+    },
+    {
+      name: "India",
+      keywords: ["india", "jaipur", "delhi", "mumbai"],
+      image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+      description: "Headquarters and domestic trade activities"
+    }
+  ];
+  
+  // Filter photos by country
+  const getPhotosForCountry = (country: typeof countryData[0]) => {
+    return displayPhotos.filter(photo => {
+      const photoText = `${photo.title} ${photo.description}`.toLowerCase();
+      return country.keywords.some(keyword => photoText.includes(keyword));
+    });
+  };
 
   // Sample photos for demonstration when database is empty
   const samplePhotos: Photo[] = [
@@ -180,57 +225,144 @@ export default function Gallery() {
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="mb-12">
-          <div className="flex flex-wrap justify-center gap-3">
-            <Button variant="outline" className="bg-primary text-white">
-              All Categories
-            </Button>
-            {photoCategories.map((category) => (
-              <Button key={category} variant="outline">
-                {category}
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        {/* Photo Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {displayPhotos.map((photo, index) => (
-            <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow group">
-              <div className="relative overflow-hidden">
-                <img 
-                  src={assetMap[photo.imageUrl] || photo.imageUrl} 
-                  alt={photo.title}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute top-4 left-4">
-                  <Badge className={getCategoryColor(photo.category)}>
-                    {photo.category}
-                  </Badge>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <div className="flex items-center text-sm mb-2">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      {new Date(photo.createdAt).toLocaleDateString()}
-                    </div>
-                    {photo.uploadedBy && (
-                      <div className="flex items-center text-sm">
-                        <Camera className="w-4 h-4 mr-2" />
-                        {photo.uploadedBy}
+        {!selectedCountry ? (
+          <>
+            {/* Country Grid */}
+            <div className="mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Select a Country</h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {countryData.map((country) => {
+                  const countryPhotos = getPhotosForCountry(country);
+                  return (
+                    <Card 
+                      key={country.name} 
+                      className="overflow-hidden hover:shadow-xl transition-all cursor-pointer group"
+                      onClick={() => setSelectedCountry(country.name)}
+                    >
+                      <div className="relative overflow-hidden h-48">
+                        <img 
+                          src={country.image} 
+                          alt={country.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                          <div className="p-6 text-white w-full">
+                            <div className="flex items-center justify-between mb-2">
+                              <h3 className="text-2xl font-bold">{country.name}</h3>
+                              <Badge variant="secondary" className="bg-white/20 text-white">
+                                {countryPhotos.length} photos
+                              </Badge>
+                            </div>
+                            <p className="text-sm text-white/90">{country.description}</p>
+                          </div>
+                        </div>
                       </div>
-                    )}
-                  </div>
-                </div>
+                    </Card>
+                  );
+                })}
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{photo.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{photo.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+            </div>
+
+            {/* All Photos Section */}
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">All Photos</h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                {displayPhotos.map((photo, index) => (
+                  <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow group">
+                    <div className="relative overflow-hidden">
+                      <img 
+                        src={assetMap[photo.imageUrl] || photo.imageUrl} 
+                        alt={photo.title}
+                        className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <Badge className={getCategoryColor(photo.category)}>
+                          {photo.category}
+                        </Badge>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-4 left-4 right-4 text-white">
+                          <div className="flex items-center text-sm mb-2">
+                            <Calendar className="w-4 h-4 mr-2" />
+                            {new Date(photo.createdAt).toLocaleDateString()}
+                          </div>
+                          {photo.uploadedBy && (
+                            <div className="flex items-center text-sm">
+                              <Camera className="w-4 h-4 mr-2" />
+                              {photo.uploadedBy}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">{photo.title}</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">{photo.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            {/* Country Photos Section */}
+            <div className="mb-8">
+              <Button 
+                variant="outline" 
+                onClick={() => setSelectedCountry(null)}
+                className="mb-8"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Countries
+              </Button>
+              
+              <div className="flex items-center gap-4 mb-8">
+                <Globe className="w-8 h-8 text-primary" />
+                <h2 className="text-3xl font-bold text-gray-900">{selectedCountry} Gallery</h2>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {getPhotosForCountry(countryData.find(c => c.name === selectedCountry)!).map((photo, index) => (
+                <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow group">
+                  <div className="relative overflow-hidden">
+                    <img 
+                      src={assetMap[photo.imageUrl] || photo.imageUrl} 
+                      alt={photo.title}
+                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <Badge className={getCategoryColor(photo.category)}>
+                        {photo.category}
+                      </Badge>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute bottom-4 left-4 right-4 text-white">
+                        <div className="flex items-center text-sm mb-2">
+                          <Calendar className="w-4 h-4 mr-2" />
+                          {new Date(photo.createdAt).toLocaleDateString()}
+                        </div>
+                        {photo.uploadedBy && (
+                          <div className="flex items-center text-sm">
+                            <Camera className="w-4 h-4 mr-2" />
+                            {photo.uploadedBy}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{photo.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{photo.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Keep existing statistics section */}
 
         {/* Statistics */}
         <div className="bg-slate-50 rounded-2xl p-8">
