@@ -6,6 +6,34 @@ import { getQueryFn } from "@/lib/queryClient";
 import { type Photo } from "@shared/schema";
 import { Camera, Calendar, MapPin, Users } from "lucide-react";
 
+// Import all Dubai photos
+import dubaiPhoto1 from "@assets/WhatsApp Image 2025-02-02 at 12.37.50 PM_1753252049778.jpeg";
+import dubaiPhoto2 from "@assets/WhatsApp Image 2025-02-02 at 12.40.02 PM (1)_1753252049787.jpeg";
+import dubaiPhoto3 from "@assets/WhatsApp Image 2025-02-02 at 12.40.02 PM (2)_1753252049787.jpeg";
+import dubaiPhoto4 from "@assets/WhatsApp Image 2025-02-02 at 12.40.02 PM_1753252049788.jpeg";
+import dubaiPhoto5 from "@assets/WhatsApp Image 2025-02-02 at 12.40.03 PM_1753252049788.jpeg";
+
+// Import all Malaysia photos
+import malaysiaPhoto1 from "@assets/PHOTO-2025-07-16-19-39-53 2_1753252207939.jpg";
+import malaysiaPhoto2 from "@assets/PHOTO-2025-07-16-19-52-52 4_1753252207943.jpg";
+import malaysiaPhoto3 from "@assets/PHOTO-2025-07-16-19-53-25 2_1753252207943.jpg";
+import malaysiaPhoto4 from "@assets/PHOTO-2025-07-16-19-53-25 3_1753252207944.jpg";
+import malaysiaPhoto5 from "@assets/PHOTO-2025-07-16-19-52-52 3_1753252207944.jpg";
+
+// Map of asset paths to imported images
+const assetMap: Record<string, string> = {
+  "/assets/WhatsApp Image 2025-02-02 at 12.37.50 PM_1753252049778.jpeg": dubaiPhoto1,
+  "/assets/WhatsApp Image 2025-02-02 at 12.40.02 PM (1)_1753252049787.jpeg": dubaiPhoto2,
+  "/assets/WhatsApp Image 2025-02-02 at 12.40.02 PM (2)_1753252049787.jpeg": dubaiPhoto3,
+  "/assets/WhatsApp Image 2025-02-02 at 12.40.02 PM_1753252049788.jpeg": dubaiPhoto4,
+  "/assets/WhatsApp Image 2025-02-02 at 12.40.03 PM_1753252049788.jpeg": dubaiPhoto5,
+  "/assets/PHOTO-2025-07-16-19-39-53 2_1753252207939.jpg": malaysiaPhoto1,
+  "/assets/PHOTO-2025-07-16-19-52-52 4_1753252207943.jpg": malaysiaPhoto2,
+  "/assets/PHOTO-2025-07-16-19-53-25 2_1753252207943.jpg": malaysiaPhoto3,
+  "/assets/PHOTO-2025-07-16-19-53-25 3_1753252207944.jpg": malaysiaPhoto4,
+  "/assets/PHOTO-2025-07-16-19-52-52 3_1753252207944.jpg": malaysiaPhoto5,
+};
+
 export default function Gallery() {
   const { data: photos = [], isLoading } = useQuery<Photo[]>({
     queryKey: ["/api/photos/active"],
@@ -172,7 +200,7 @@ export default function Gallery() {
             <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow group">
               <div className="relative overflow-hidden">
                 <img 
-                  src={photo.imageUrl} 
+                  src={assetMap[photo.imageUrl] || photo.imageUrl} 
                   alt={photo.title}
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
